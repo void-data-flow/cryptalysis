@@ -13,12 +13,13 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-paper": "^4.9.2",
     "react-native-web": "^0.17.5"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "set-value": ">=4.0.1",
-    "node-fetch": ">=2.6.1"
+    "node-fetch": ">=2.6.1",
+    "set-value": ">=4.0.1"
   },
   "private": true
 }
