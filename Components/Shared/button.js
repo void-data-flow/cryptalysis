@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     textTransform: "uppercase",
+    letterSpacing: 1.5,
+    fontWeight: "600",
+    textAlign: "center",
   },
 });
 

@@ -1,31 +1,23 @@
 import React, { Fragment } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
+import { StyleSheet, View, Linking } from "react-native";
 import FlatButton from "./Shared/button";
 
-const changePage = () => {
-  console.log("Pressed");
+const openWebsite = () => {
+  Linking.openURL("https://manavrachna.edu.in/");
 };
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <Fragment>
       <View style={styles.container}>
         <View style={styles.btnSpacer}>
-          <FlatButton text="hello world" onPress={changePage} />
+          <FlatButton text="University" onPress={openWebsite} />
         </View>
         <View style={styles.btnSpacer}>
-          <FlatButton text="hello world" onPress={changePage} />
-        </View>
-        <View style={styles.btnSpacer}>
-          <Button
-            mode="contained"
-            style={styles.btn}
-            color="teal"
-            onPress={changePage}
-          >
-            Press me
-          </Button>
+          <FlatButton
+            text="CryptoCurrencies"
+            onPress={() => navigation.push("Main", { name: "lorem" })}
+          />
         </View>
       </View>
     </Fragment>
@@ -44,7 +36,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   btnSpacer: {
-    marginVertical: 10,
+    marginVertical: 16,
+    marginHorizontal: 20,
   },
 });
 
