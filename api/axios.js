@@ -9,7 +9,7 @@ function getCoinList() {
     // params: {
     //   start: 1,
     //   limit: 10,
-    //   convert: "USD",
+    //   convert: "INR",
     // },
     headers: {
       "X-CMC_PRO_API_KEY": API_KEY,
