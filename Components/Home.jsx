@@ -1,5 +1,8 @@
 import React, { Fragment } from "react";
 import { StyleSheet, View, Linking } from "react-native";
+
+// FIXME: custom header import. Don't Touch
+// import Header from "./Widgets/Header";
 import FlatButton from "./Shared/button";
 
 const openWebsite = () => {
@@ -9,6 +12,9 @@ const openWebsite = () => {
 const Home = ({ navigation }) => {
   return (
     <Fragment>
+      {/* FIXME: custom header component call. Don't Touch */}
+      {/* <Header backArrow={true} title={"Cryptalysis"} /> */}
+
       <View style={styles.container}>
         <View style={styles.btnSpacer}>
           <FlatButton text="University" onPress={openWebsite} />
