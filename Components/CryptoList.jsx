@@ -51,32 +51,35 @@ const CryptoList = () => {
     return <Text>Some famous coins</Text>;
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => <Item props={item} />}
-        keyExtractor={(item) => item.id}
-        ListHeaderComponent={ListHeader}
-      />
-    </SafeAreaView>
-  );
-  // const [coinData,setData] = useState([]);
-  // useEffect(()=>{
-  //     getCoinList().then(res=>{
-  //         setData(res.data.data);
-  //     }).catch(err=>{
-  //         console.log(err);
-  //     })
-  // },[])
   // return (
-  //     <SafeAreaView style={styles.container}>
-  //         <FlatList
-  //             data={coinData}
-  //             renderItem={({ item }) => <Item title={item.name} />}
-  //             keyExtractor={item => item.id}
-  //         />
-  //     </SafeAreaView>
+  //   <SafeAreaView style={styles.container}>
+  //     <FlatList
+  //       data={DATA}
+  //       renderItem={({ item }) => <Item props={item} />}
+  //       keyExtractor={(item) => item.id}
+  //       ListHeaderComponent={ListHeader}
+  //     />
+  //   </SafeAreaView>
+  // );
+  // const [coinData, setData] = useState([]);
+  // useEffect(() => {
+  //   getCoinList()
+  //     .then((res) => {
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+  // return (
+  //   <SafeAreaView style={styles.container}>
+  //     <FlatList
+  //       data={coinData}
+  //       renderItem={({ item }) => <Item title={item.name} />}
+  //       keyExtractor={(item) => item.id}
+  //       ListHeaderComponent={ListHeader}
+  //     />
+  //   </SafeAreaView>
   // );
 };
 
