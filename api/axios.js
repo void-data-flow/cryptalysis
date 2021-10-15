@@ -1,22 +1,19 @@
 import axios from "axios";
 import { API_KEY } from "@env";
 const instance = axios.create({
-  baseURL: "https://pro-api.coinmarketcap.com/v1",
+  baseURL: "https://api.coincap.io/v2",
 });
 
 const getCoinList = async () => {
-  const apiData = await instance.get("/cryptocurrency/listings/latest", {
-    // params: {
-    //   start: 1,
-    //   limit: 10,
-    //   convert: "INR",
-    // },
-    headers: {
-      "X-CMC_PRO_API_KEY": API_KEY,
-      "Access-Control-Allow-Origin": "*",
+  const apiData = await instance.get("/assets/", {
+    params: {
+      limit: 10,
     },
+    // headers: {
+    //   "Retry-After": "5000",
+    // },
   });
-  return apiData;
+  return apiData.data.data;
 };
 
 export { getCoinList };

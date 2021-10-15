@@ -7,7 +7,7 @@ import {
   Text,
   StatusBar,
 } from "react-native";
-// import { getCoinList } from "../api/axios";
+import { getCoinList } from "../api/axios";
 
 const DATA = [
   {
@@ -35,14 +35,14 @@ const DATA = [
 
 const Item = ({ props }) => {
   return (
-    <View style={styles.item}>
+    <View style={[styles.item, styles.shadow]}>
       <View style={styles.rowTop}>
         <Text>{props.name}</Text>
-        <Text>{props.num_market_pairs}</Text>
-        <Text>{props.quote.USD.price.toFixed(2)}</Text>
+        <Text>{Number(props.changePercent24Hr).toFixed(2)}%</Text>
+        <Text>${Number(props.priceUsd).toFixed(2)}</Text>
       </View>
       <View style={styles.rowBottom}>
-        <Text>{props.cmc_rank}</Text>
+        <Text>{props.rank}</Text>
         <Text>{props.symbol}</Text>
       </View>
     </View>
@@ -53,66 +53,72 @@ const ListHeader = () => {
 };
 
 const CryptoList = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => <Item props={item} />}
-        keyExtractor={(item) => item.id}
-        ListHeaderComponent={ListHeader}
-      />
-    </SafeAreaView>
-  );
-  // const [coinData, setData] = useState([]);
-  // useEffect(() => {
-  //   getCoinList()
-  //     .then((res) => {
-  //       setData(res.data.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
   // return (
   //   <SafeAreaView style={styles.container}>
   //     <FlatList
-  //       data={coinData}
-  //       renderItem={({ item }) => <Item title={item.name} />}
+  //       data={DATA}
+  //       renderItem={({ item }) => <Item props={item} />}
   //       keyExtractor={(item) => item.id}
   //       ListHeaderComponent={ListHeader}
   //     />
   //   </SafeAreaView>
   // );
+  const [coinData, setData] = useState([]);
+  useEffect(() => {
+    getCoinList()
+      .then((res) => {
+        setData(res);
+        // console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={coinData}
+        renderItem={({ item }) => <Item props={item} />}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+      />
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    marginVertical: 5,
+  },
+  shadow: {
+    // borderWidth: 1,
+    // shadowColor: "#000",
+    // shadowRadius: 5,
+    // shadowOpacity: 0.3,
+    // elevation: 5,
+
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.2,
+    elevation: 1,
+    shadowColor: "#000",
   },
   item: {
-    backgroundColor: "#f0f0f0",
     borderRadius: 8,
-    padding: 10,
+    padding: 12,
     marginVertical: 10,
-    marginHorizontal: 8,
-    padding: 10,
-
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 5,
   },
   rowTop: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    fontSize: 16,
   },
   rowBottom: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
+    fontSize: 16,
   },
 });
 
