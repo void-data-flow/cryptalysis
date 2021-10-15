@@ -15,18 +15,23 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar style="dark" />
-      {/* <Header /> */}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{ title: "Cryptalysis" }}
+            options={{
+              title: "Cryptalysis",
+              // headerShown: false,
+            }}
           />
           <Stack.Screen
             name="Main"
             component={Crypto}
-            options={{ title: "Crypto" }}
+            options={{
+              title: "Crypto Coins",
+              // headerShown: false,
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

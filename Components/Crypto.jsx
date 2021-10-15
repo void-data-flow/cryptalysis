@@ -9,17 +9,24 @@ import {
 } from "react-native";
 import CryptoList from "./CryptoList";
 
+// FIXME: custom header import. Don't Touch
+// import Header from "./Widgets/Header";
+
 const MainScreen = ({ navigation, route }) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-      >
+    <React.Fragment>
+      {/* FIXME: custom header component call. Don't Touch */}
+      {/* <Header backArrow={false} title={"Crypto Coins"} /> */}
 
+      <SafeAreaView style={styles.container}>
+        {/* <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        > */}
         <CryptoList navigation={navigation} route={route} />
-      </ScrollView>
-    </SafeAreaView>
+        {/* </ScrollView> */}
+      </SafeAreaView>
+    </React.Fragment>
   );
 };
 
