@@ -33,8 +33,8 @@ const DATA = [
   },
 ];
 
-const CryptoList = () => {
-  const Item = ({ props }) => (
+const Item = ({ props }) => {
+  return (
     <View style={styles.item}>
       <View style={styles.rowTop}>
         <Text>{props.name}</Text>
@@ -47,20 +47,22 @@ const CryptoList = () => {
       </View>
     </View>
   );
-  const ListHeader = () => {
-    return <Text>Some famous coins</Text>;
-  };
+};
+const ListHeader = () => {
+  return <Text>Some famous coins</Text>;
+};
 
-  // return (
-  //   <SafeAreaView style={styles.container}>
-  //     <FlatList
-  //       data={DATA}
-  //       renderItem={({ item }) => <Item props={item} />}
-  //       keyExtractor={(item) => item.id}
-  //       ListHeaderComponent={ListHeader}
-  //     />
-  //   </SafeAreaView>
-  // );
+const CryptoList = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={DATA}
+        renderItem={({ item }) => <Item props={item} />}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={ListHeader}
+      />
+    </SafeAreaView>
+  );
   // const [coinData, setData] = useState([]);
   // useEffect(() => {
   //   getCoinList()
@@ -89,8 +91,18 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    marginVertical: 8,
-    padding: "10px",
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
+    padding: 10,
+    marginVertical: 10,
+    marginHorizontal: 8,
+    padding: 10,
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
   rowTop: {
     display: "flex",

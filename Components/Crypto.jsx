@@ -19,12 +19,12 @@ const MainScreen = ({ navigation, route }) => {
       {/* <Header backArrow={false} title={"Crypto Coins"} /> */}
 
       <SafeAreaView style={styles.container}>
-        <ScrollView
+        {/* <ScrollView
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-        >
-          <CryptoList navigation={navigation} route={route} />
-        </ScrollView>
+        > */}
+        <CryptoList navigation={navigation} route={route} />
+        {/* </ScrollView> */}
       </SafeAreaView>
     </React.Fragment>
   );
