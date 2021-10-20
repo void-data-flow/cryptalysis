@@ -7,7 +7,7 @@ const instance = axios.create({
 const getCoinList = async () => {
   const apiData = await instance.get("/assets/", {
     params: {
-      limit: 10,
+      limit: 20,
     },
     // headers: {
     //   "Retry-After": "5000",
