@@ -4,10 +4,10 @@ const instance = axios.create({
   baseURL: "https://api.coincap.io/v2",
 });
 
-const getCoinList = async () => {
+const getCoinList = async (listLimit) => {
   const apiData = await instance.get("/assets/", {
     params: {
-      limit: 20,
+      limit: listLimit,
     },
     // headers: {
     //   "Retry-After": "5000",
