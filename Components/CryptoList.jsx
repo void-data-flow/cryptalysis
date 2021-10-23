@@ -89,7 +89,7 @@ const Item = ({ props }) => {
               ) : (
                 <Entypo name="triangle-down" size={20} color="red" />
               )}
-              {Number(props.changePercent24Hr).toFixed(6)}%
+              {Number(props.changePercent24Hr).toFixed(2)}%
             </Text>
           </View>
         </View>
