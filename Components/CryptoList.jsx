@@ -37,7 +37,7 @@ import { Entypo } from "@expo/vector-icons";
 const Item = ({ props }) => {
   return (
     <View style={[styles.item, styles.shadow]}>
-      <View style={styles.rowTop}>
+      {/* <View style={styles.rowTop}>
         <Image
           style={{ width: 40, height: 40 }}
           source={{
@@ -50,10 +50,9 @@ const Item = ({ props }) => {
           {props.changePercent24Hr > 0 ? (
             <Entypo name="triangle-up" size={20} color="green" />
           ) : (
-            <Entypo name="triangle-down" size={20} color="red" />
+            <Entypo name="-down" size={20} color="red" />
           )}
-          {/* <Entypo name="triangle-up" size={24} color="green" />
-          <Entypo name="triangle-down" size={24} color="red" /> */}
+ 
           {Number(props.changePercent24Hr).toFixed(2)}%
         </Text>
         <Text>${Number(props.priceUsd).toFixed(2)}</Text>
@@ -61,29 +60,43 @@ const Item = ({ props }) => {
       <View style={styles.rowBottom}>
         <Text>{props.rank}</Text>
         <Text>{props.symbol}</Text>
+      </View> */}
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flexDirection: "column" }}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ flexDirection: "column" }}>
+              <Image
+                style={{ width: 40, height: 40 }}
+                source={{
+                  // uri: `https://cryptoicons.org/api/color/${props.symbol.toLowerCase()}/200`,
+                  // https://api.coinicons.net/icon/ada/64x64
+                  uri: `http://api.coinicons.net/icon/${props.symbol.toLowerCase()}/64x64`,
+                }}
+              />
+            </View>
+            <View style={{ flexDirection: "column" }}>
+              <Text>{props.name}</Text>
+              <Text>rank : {props.rank}</Text>
+            </View>
+          </View>
+        </View>
+        <View>
+          <View style={{ flexDirection: "column" }}>
+            <Text>${Number(props.priceUsd).toFixed(2)}</Text>
+            <Text>
+              {props.changePercent24Hr > 0 ? (
+                <Entypo name="triangle-up" size={20} color="green" />
+              ) : (
+                <Entypo name="triangle-down" size={20} color="red" />
+              )}
+              {Number(props.changePercent24Hr).toFixed(2)}%
+            </Text>
+          </View>
+        </View>
       </View>
     </View>
 
     // FIXME: Don't touch below code
-    // <View row justify-space-between>
-    //   <View col1>
-    //     <View row>
-    //       <View col1>
-    //         <Image/>
-    //       </View>
-    //       <View col2 col-direction>
-    //         <Text Name Short></Text>
-    //         <Text Rank></Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    //   <View col2>
-    //     <View col-direction>
-    //       <Text Price></Text>
-    //       <Text Increase></Text>
-    //     </View>
-    //   </View>
-    // </View>
   );
 };
 const ListHeader = () => {
