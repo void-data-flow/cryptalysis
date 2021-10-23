@@ -66,7 +66,7 @@ const Item = ({ props }) => {
           <View style={{ flexDirection: "row" }}>
             <View style={{ flexDirection: "column" }}>
               <Image
-                style={{ width: 40, height: 40 }}
+                style={{ width: 40, height: 40, marginRight: 10 }}
                 source={{
                   // uri: `https://cryptoicons.org/api/color/${props.symbol.toLowerCase()}/200`,
                   // https://api.coinicons.net/icon/ada/64x64
@@ -89,7 +89,7 @@ const Item = ({ props }) => {
               ) : (
                 <Entypo name="triangle-down" size={20} color="red" />
               )}
-              {Number(props.changePercent24Hr).toFixed(2)}%
+              {Number(props.changePercent24Hr).toFixed(6)}%
             </Text>
           </View>
         </View>
@@ -120,7 +120,7 @@ const CryptoList = () => {
       .then((res) => {
         setTimeout(() => {
           setData(res);
-        }, 2000);
+        }, 1000);
         // console.log(res);
       })
       .catch((err) => {
@@ -151,11 +151,10 @@ const styles = StyleSheet.create({
     // shadowRadius: 5,
     // shadowOpacity: 0.3,
     // elevation: 5,
-
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    elevation: 1,
-    shadowColor: "#000",
+    // shadowOffset: { width: 0, height: 3 },
+    // shadowOpacity: 0.2,
+    // elevation: 1,
+    // shadowColor: "#000",
   },
   item: {
     borderRadius: 8,
