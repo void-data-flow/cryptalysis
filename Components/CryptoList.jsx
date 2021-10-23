@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import { getCoinList } from "../api/axios";
+import { Entypo } from "@expo/vector-icons";
 
 // const DATA = [
 //   {
@@ -40,11 +41,21 @@ const Item = ({ props }) => {
         <Image
           style={{ width: 40, height: 40 }}
           source={{
-            uri: "https://reactnative.dev/img/tiny_logo.png",
+            uri: `https://cryptoicons.org/api/color/${props.symbol.toLowerCase()}/200`,
           }}
         ></Image>
         <Text>{props.name}</Text>
-        <Text>{Number(props.changePercent24Hr).toFixed(2)}%</Text>
+
+        <Text>
+          {props.changePercent24Hr > 0 ? (
+            <Entypo name="triangle-up" size={20} color="green" />
+          ) : (
+            <Entypo name="triangle-down" size={20} color="red" />
+          )}
+          {/* <Entypo name="triangle-up" size={24} color="green" />
+          <Entypo name="triangle-down" size={24} color="red" /> */}
+          {Number(props.changePercent24Hr).toFixed(2)}%
+        </Text>
         <Text>${Number(props.priceUsd).toFixed(2)}</Text>
       </View>
       <View style={styles.rowBottom}>
