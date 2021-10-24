@@ -22,7 +22,7 @@ const Home = ({ navigation }) => {
         <View style={styles.btnSpacer}>
           <FlatButton
             text="CryptoCurrencies"
-            onPress={() => navigation.push("Main", { name: "lorem" })}
+            onPress={() => navigation.push("Main")}
           />
         </View>
       </View>

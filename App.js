@@ -8,6 +8,7 @@ import Crypto from "./Components/Crypto";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Coin from "./Components/Coin";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,11 @@ export default function App() {
               title: "Crypto Coins",
               // headerShown: false,
             }}
+          />
+          <Stack.Screen
+            name="Coin"
+            component={Coin}
+            options={({ route }) => ({ title: route.params.name })}
           />
         </Stack.Navigator>
       </NavigationContainer>
