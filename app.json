@@ -4,11 +4,11 @@
     "slug": "Cryptalysis",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/favicon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -18,19 +18,20 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.harshmittal.cryptalysis",
+      "bundleIdentifier": "com.harshmittal1750.cryptalysis",
       "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/favicon.png",
+        "backgroundColor": "#000000"
       },
-      "package": "com.harshmittal.cryptalysis",
+      "package": "com.harshmittal1750.cryptalysis",
       "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "A cryptocurrency based application on React Native Technology."
   }
 }
