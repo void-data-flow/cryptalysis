@@ -30,7 +30,7 @@ export default function App() {
             name="Main"
             component={Crypto}
             options={{
-              title: "Crypto Coins",
+              title: "Market",
               // headerShown: false,
             }}
           />

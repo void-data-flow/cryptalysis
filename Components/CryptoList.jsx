@@ -67,13 +67,18 @@ const Item = ({ props, navigation }) => {
               ${Number(props.priceUsd).toFixed(2)}
             </Text>
 
-            <Text>
+            <Text style={{ textAlign: "right" }}>
               {Number(props.changePercent24Hr) > 0 ? (
-                <Entypo name="triangle-up" size={22} color="green" />
+                // <Entypo name="triangle-up" size={22} color="green" />
+                <Text style={{ color: "green" }}>
+                  +{Number(props.changePercent24Hr).toFixed(2)}%
+                </Text>
               ) : (
-                <Entypo name="triangle-down" size={22} color="red" />
+                // <Entypo name="triangle-down" size={22} color="red" />
+                <Text style={{ color: "red" }}>
+                  {Number(props.changePercent24Hr).toFixed(2)}%
+                </Text>
               )}
-              {Number(props.changePercent24Hr).toFixed(2)}%
             </Text>
           </View>
         </View>
@@ -82,7 +87,10 @@ const Item = ({ props, navigation }) => {
     // FIXME: Don't touch below code
   );
 };
-const ListHeader = () => {
+
+let stopFetchMore = true;
+
+const FooterLoader = () => {
   return <Text>Some famous coins</Text>;
 };
 
@@ -90,17 +98,24 @@ const CryptoList = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
   const [loader, setLoader] = useState(true);
 
+  const fetchData = async () => {
+    const data = await getCoinList(20);
+    console.log([...data]);
+    setData([...data]);
+  };
+
+  const handleOnEndReached = async () => {
+    if (!stopFetchMore) {
+      const response = await getCoinList(20);
+      console.log([...coinData, ...response]);
+      setData([...coinData, ...response]);
+      stopFetchMore = true;
+    }
+  };
+
   useEffect(() => {
-    getCoinList(50)
-      .then((res) => {
-        setTimeout(() => {
-          setData(res);
-          setLoader(false);
-        }, 1000);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    fetchData();
+    setLoader(false);
   }, []);
 
   return (
@@ -109,7 +124,7 @@ const CryptoList = ({ navigation, route }) => {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <ActivityIndicator size={80} color="teal" />
+          <ActivityIndicator size={60} color="teal" />
         </View>
       ) : (
         <FlatList
@@ -119,6 +134,11 @@ const CryptoList = ({ navigation, route }) => {
           )}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
+          onEndReached={handleOnEndReached}
+          onEndReachedThreshold={0.5}
+          onScrollBeginDrag={() => {
+            stopFetchMore = false;
+          }}
         />
       )}
     </SafeAreaView>
@@ -133,10 +153,10 @@ const styles = StyleSheet.create({
   },
   shadow: {
     shadowColor: "#000",
-    elevation: 5,
+    elevation: 2,
     shadowOffset: {
-      width: 2,
-      height: 5,
+      width: 0,
+      height: 1,
     },
     shadowOpacity: 0.2,
     shadowRadius: 10,
@@ -145,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 10,
     padding: 12,
-    marginVertical: 10,
+    marginVertical: 5,
   },
 });
 

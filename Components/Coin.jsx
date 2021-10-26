@@ -12,10 +12,18 @@ import {
 const Coin = ({ route, navigation }) => {
   const { coinData } = route.params;
   return (
-    <View>
+    <View style={styles.container}>
       <Text>{coinData.name}</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginVertical: 5,
+    marginHorizontal: 10,
+  },
+});
 
 export default Coin;
