@@ -6,9 +6,9 @@
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
     "splash": {
-      "image": "./assets/Cryptalysis.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#242424"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
