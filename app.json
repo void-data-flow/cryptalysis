@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
     "splash": {
-      "image": "./assets/Cryptalysis.gif",
+      "image": "./assets/Cryptalysis.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
