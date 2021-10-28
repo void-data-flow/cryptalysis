@@ -30,14 +30,14 @@ export default function App() {
             name="Main"
             component={Crypto}
             options={{
-              title: "Crypto Coins",
+              title: "Coin Market",
               // headerShown: false,
             }}
           />
           <Stack.Screen
             name="Coin"
             component={Coin}
-            options={({ route }) => ({ title: route.params.name })}
+            options={({ route }) => ({ title: route.params?.name })}
           />
         </Stack.Navigator>
       </NavigationContainer>
