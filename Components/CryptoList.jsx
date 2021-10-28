@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { getCoinList } from "../api/axios";
+import { getCoinList, getSingleCoinInfo } from "../api/axios";
 import { Entypo } from "@expo/vector-icons";
 
 const Item = ({ props, navigation }) => {
@@ -22,16 +22,14 @@ const Item = ({ props, navigation }) => {
         });
       }}
     >
-      <View style={[styles.wrapper, styles.shadow]}>
+      <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flexDirection: "column" }}>
               <Image
                 style={{ width: 40, height: 40, marginRight: 10 }}
                 source={{
-                  // uri: `https://cryptoicons.org/api/color/${props.symbol.toLowerCase()}/200`,
-                  // https://api.coinicons.net/icon/ada/64x64
-                  uri: `http://api.coinicons.net/icon/${props.symbol.toLowerCase()}/64x64`,
+                  uri: props.image,
                 }}
               />
             </View>
@@ -55,7 +53,7 @@ const Item = ({ props, navigation }) => {
                     marginTop: 1,
                   }}
                 >
-                  {props.rank}
+                  {props.market_cap_rank}
                 </Text>
                 <Text>({props.symbol})</Text>
               </View>
@@ -64,19 +62,19 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text style={{ textAlign: "right", marginVertical: 1 }}>
-              ${Number(props.priceUsd).toFixed(2)}
+              ${Number(props.current_price).toFixed(2)}
             </Text>
 
             <Text style={{ textAlign: "right" }}>
-              {Number(props.changePercent24Hr) > 0 ? (
+              {Number(props.price_change_percentage_24h) > 0 ? (
                 // <Entypo name="triangle-up" size={22} color="green" />
                 <Text style={{ color: "green" }}>
-                  +{Number(props.changePercent24Hr).toFixed(2)}%
+                  +{Number(props.price_change_percentage_24h).toFixed(2)}%
                 </Text>
               ) : (
                 // <Entypo name="triangle-down" size={22} color="red" />
                 <Text style={{ color: "red" }}>
-                  {Number(props.changePercent24Hr).toFixed(2)}%
+                  -{Number(props.price_change_percentage_24h).toFixed(2)}%
                 </Text>
               )}
             </Text>
@@ -88,7 +86,6 @@ const Item = ({ props, navigation }) => {
   );
 };
 
-
 const FooterLoader = () => {
   return <Text>Some famous coins</Text>;
 };
@@ -98,12 +95,16 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   const fetchData = async () => {
-    const data = await getCoinList(20);
+    const data = await getCoinList("usd", 20);
+    console.log(data);
     setData([...data]);
   };
 
   useEffect(() => {
     fetchData();
+    getSingleCoinInfo("bitcoin")
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
     setLoader(false);
   }, []);
 
@@ -134,16 +135,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 5,
     marginHorizontal: 10,
-  },
-  shadow: {
-    shadowColor: "#000",
-    elevation: 2,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
   },
   wrapper: {
     backgroundColor: "white",
