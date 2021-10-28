@@ -22,7 +22,7 @@ const Item = ({ props, navigation }) => {
         });
       }}
     >
-      <View style={[styles.wrapper, styles.shadow]}>
+      <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
             <View style={{ flexDirection: "column" }}>
@@ -88,7 +88,6 @@ const Item = ({ props, navigation }) => {
   );
 };
 
-
 const FooterLoader = () => {
   return <Text>Some famous coins</Text>;
 };
@@ -134,16 +133,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 5,
     marginHorizontal: 10,
-  },
-  shadow: {
-    shadowColor: "#000",
-    elevation: 2,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 10,
   },
   wrapper: {
     backgroundColor: "white",
