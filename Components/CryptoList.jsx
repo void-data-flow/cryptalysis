@@ -17,7 +17,7 @@ const Item = ({ props, navigation }) => {
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("Coin", {
-          name: `${props.name}`,
+          coinID: `${props.name}`,
         });
       }}
     >

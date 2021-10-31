@@ -11,11 +11,13 @@ import {
 import { getCoinList } from "../api/axios";
 import { AntDesign } from "@expo/vector-icons";
 const Coin = ({ route, navigation }) => {
-  const { coinData } = route.params;
+  const { coinID } = route.params;
+
+  console.log(coinID);
   return (
     <View>
-      {/* <Text>{coinData.name}</Text> */}
-      <View style={{ flexDirection: "row" }}>
+      <Text>{coinID}</Text>
+      {/* <View style={{ flexDirection: "row" }}>
         <View style={{ flexDirection: "column" }}>
           <Image
             style={{ width: 40, height: 40, marginRight: 10 }}
@@ -28,15 +30,15 @@ const Coin = ({ route, navigation }) => {
         </View>
         <Text>{coinData.symbol}</Text>
         <Text>{coinData.rank}</Text>
-      </View>
-      <View style={{ flexDirection: "row" }}>
+      </View> */}
+      {/* <View style={{ flexDirection: "row" }}>
         <Text>{coinData.name}</Text>
-      </View>
-      <View style={{ flexDirection: "row" }}>
+      </View> */}
+      {/* <View style={{ flexDirection: "row" }}>
         <View>
           <Text>{coinData.priceUsd}</Text>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };
