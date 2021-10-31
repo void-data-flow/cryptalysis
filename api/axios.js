@@ -15,7 +15,7 @@ const getCoinList = async (currency, listLimit) => {
 
 const getSingleCoinInfo = async (coinId) => {
   const apiData = await instance.get(
-    `coins/${coinId}?tickers=false&market_data=true`
+    `coins/${coinId}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
   );
   // console.log(apiData.data);
   return apiData.data;

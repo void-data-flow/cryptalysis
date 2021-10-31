@@ -6,11 +6,12 @@ import {
   Dimensions,
   Image,
   Text,
+  TouchableOpacity,
 } from "react-native";
 import { getCoinList } from "../../api/axios";
 const { width } = Dimensions.get("window");
 
-function Card() {
+const Card = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
 
   const fetchData = async () => {
@@ -37,48 +38,58 @@ function Card() {
     >
       {coinData.map((props, index) => {
         return (
-          <View style={styles.view} key={index}>
-            <View>
-              <Image
-                style={{ width: 50, height: 50 }}
-                source={{
-                  uri: props.image,
-                }}
-              />
-            </View>
-            <View>
-              <Text style={styles.text}>
-                {props.name} ({props.symbol.toUpperCase()})
-              </Text>
-            </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Coin", {
+                coinID: `${props.id}`,
+                coinName: `${props.name}`,
+              });
+            }}
+            key={index}
+          >
+            <View style={styles.view}>
+              <View>
+                <Image
+                  style={{ width: 50, height: 50 }}
+                  source={{
+                    uri: props.image,
+                  }}
+                />
+              </View>
+              <View>
+                <Text style={styles.text}>
+                  {props.name} ({props.symbol.toUpperCase()})
+                </Text>
+              </View>
 
-            <View>
-              <Text style={styles.text}>
-                {Number(props.current_price).toFixed(2)}
-              </Text>
-            </View>
+              <View>
+                <Text style={styles.text}>
+                  {Number(props.current_price).toFixed(2)}
+                </Text>
+              </View>
 
-            <View>
-              <Text>
-                {Number(props.price_change_percentage_24h) > 0 ? (
-                  // <Entypo name="triangle-up" size={22} color="green" />
-                  <Text style={{ color: "green" }}>
-                    +{Number(props.price_change_percentage_24h).toFixed(2)}%
-                  </Text>
-                ) : (
-                  // <Entypo name="triangle-down" size={22} color="red" />
-                  <Text style={{ color: "red" }}>
-                    {Number(props.price_change_percentage_24h).toFixed(2)}%
-                  </Text>
-                )}
-              </Text>
+              <View>
+                <Text>
+                  {Number(props.price_change_percentage_24h) > 0 ? (
+                    // <Entypo name="triangle-up" size={22} color="green" />
+                    <Text style={{ color: "green" }}>
+                      +{Number(props.price_change_percentage_24h).toFixed(2)}%
+                    </Text>
+                  ) : (
+                    // <Entypo name="triangle-down" size={22} color="red" />
+                    <Text style={{ color: "red" }}>
+                      {Number(props.price_change_percentage_24h).toFixed(2)}%
+                    </Text>
+                  )}
+                </Text>
+              </View>
             </View>
-          </View>
+          </TouchableOpacity>
         );
       })}
     </ScrollView>
   );
-}
+};
 
 export default Card;
 

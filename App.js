@@ -37,7 +37,7 @@ export default function App() {
           <Stack.Screen
             name="Coin"
             component={Coin}
-            options={({ route }) => ({ title: route.params.coinID })}
+            options={({ route }) => ({ title: route.params.coinName })}
           />
         </Stack.Navigator>
       </NavigationContainer>

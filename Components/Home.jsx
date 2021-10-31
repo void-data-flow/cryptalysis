@@ -10,7 +10,7 @@ const openWebsite = () => {
   Linking.openURL("https://manavrachna.edu.in/");
 };
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
   return (
     <Fragment>
       {/* FIXME: custom header component call. Don't Touch */}
@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
             <Text>Top Coins</Text>
             <Text>See All</Text>
           </View>
-          <Card />
+          <Card navigation={navigation} route={route} />
         </View>
       </View>
     </Fragment>
