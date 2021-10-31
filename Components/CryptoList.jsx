@@ -17,8 +17,8 @@ const Item = ({ props, navigation }) => {
     <TouchableOpacity
       onPress={() => {
         navigation.navigate("Coin", {
-          name: `${props.name}`,
-          coinData: props,
+          coinID: `${props.id}`,
+          coinName: `${props.name}`,
         });
       }}
     >
@@ -62,7 +62,7 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text style={{ textAlign: "right", marginVertical: 1 }}>
-              ${Number(props.current_price).toFixed(2)}
+              $ {Number(props.current_price).toFixed(2)}
             </Text>
 
             <Text style={{ textAlign: "right" }}>
@@ -74,7 +74,7 @@ const Item = ({ props, navigation }) => {
               ) : (
                 // <Entypo name="triangle-down" size={22} color="red" />
                 <Text style={{ color: "red" }}>
-                  -{Number(props.price_change_percentage_24h).toFixed(2)}%
+                  {Number(props.price_change_percentage_24h).toFixed(2)}%
                 </Text>
               )}
             </Text>
@@ -96,15 +96,15 @@ const CryptoList = ({ navigation, route }) => {
 
   const fetchData = async () => {
     const data = await getCoinList("usd", 20);
-    console.log(data);
+    // console.log(data);
     setData([...data]);
   };
 
   useEffect(() => {
     fetchData();
-    getSingleCoinInfo("bitcoin")
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+    // getSingleCoinInfo("bitcoin")
+    //   .then((data) => console.log(data))
+    //   .catch((err) => console.log(err));
     setLoader(false);
   }, []);
 

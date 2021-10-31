@@ -1,15 +1,16 @@
 import React, { Fragment } from "react";
-import { StyleSheet, View, Linking } from "react-native";
+import { StyleSheet, View, Linking, Text } from "react-native";
 
 // FIXME: custom header import. Don't Touch
 // import Header from "./Widgets/Header";
 import FlatButton from "./Shared/button";
+import Card from "./Widgets/Card";
 
 const openWebsite = () => {
   Linking.openURL("https://manavrachna.edu.in/");
 };
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation, route }) => {
   return (
     <Fragment>
       {/* FIXME: custom header component call. Don't Touch */}
@@ -25,6 +26,14 @@ const Home = ({ navigation }) => {
             onPress={() => navigation.push("Main")}
           />
         </View>
+
+        <View>
+          <View style={styles.subHeader}>
+            <Text>Top Coins</Text>
+            <Text>See All</Text>
+          </View>
+          <Card navigation={navigation} route={route} />
+        </View>
       </View>
     </Fragment>
   );
@@ -32,9 +41,9 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 10,
+    // flex: 1,
+    // justifyContent: "center",
+    padding: 20,
   },
   btn: {
     borderRadius: 8,
@@ -43,7 +52,12 @@ const styles = StyleSheet.create({
   },
   btnSpacer: {
     marginVertical: 16,
-    marginHorizontal: 20,
+    // marginHorizontal: 20,
+  },
+  subHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 10,
   },
 });
 

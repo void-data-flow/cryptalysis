@@ -8,36 +8,52 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { getCoinList } from "../api/axios";
-import { AntDesign } from "@expo/vector-icons";
+import { getSingleCoinInfo } from "../api/axios";
+
 const Coin = ({ route, navigation }) => {
-  const { coinData } = route.params;
+  const { coinID, coinName } = route.params;
+  const coinIDLowerCase = coinID.toLowerCase();
+
+  const [singleCoinDetails, setSingleCoinDetails] = useState({});
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    getSingleCoinInfo(coinIDLowerCase)
+      .then((data) => {
+        // console.log(data);
+        setSingleCoinDetails(data);
+      })
+      .catch((err) => console.log(err));
+
+    setLoader(false);
+  }, []);
+
+  console.log(coinID);
+  // console.log(singleCoinDetails);
   return (
-    <View>
-      {/* <Text>{coinData.name}</Text> */}
-      <View style={{ flexDirection: "row" }}>
-        <View style={{ flexDirection: "column" }}>
+    <SafeAreaView style={styles.container}>
+      {loader ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size={60} color="teal" />
+        </View>
+      ) : (
+        <View>
           <Image
             style={{ width: 40, height: 40, marginRight: 10 }}
             source={{
-              // uri: `https://cryptoicons.org/api/color/${props.symbol.toLowerCase()}/200`,
-              // https://api.coinicons.net/icon/ada/64x64
-              uri: `http://api.coinicons.net/icon/${coinData.symbol.toLowerCase()}/64x64`,
+              uri: singleCoinDetails.image?.large,
             }}
           />
+          <Text>{singleCoinDetails.name}</Text>
+          <Text>{singleCoinDetails.symbol}</Text>
+          <Text>{singleCoinDetails.market_cap_rank}</Text>
+          <Text>{singleCoinDetails.market_data?.current_price?.usd}</Text>
+          <Text>{singleCoinDetails.description?.en}</Text>
         </View>
-        <Text>{coinData.symbol}</Text>
-        <Text>{coinData.rank}</Text>
-      </View>
-      <View style={{ flexDirection: "row" }}>
-        <Text>{coinData.name}</Text>
-      </View>
-      <View style={{ flexDirection: "row" }}>
-        <View>
-          <Text>{coinData.priceUsd}</Text>
-        </View>
-      </View>
-    </View>
+      )}
+    </SafeAreaView>
   );
 };
 
