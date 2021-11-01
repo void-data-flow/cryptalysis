@@ -39,6 +39,7 @@ const CoinCard = ({ navigation, route }) => {
       {coinData.map((props, index) => {
         return (
           <TouchableOpacity
+            activeOpacity={0.8}
             onPress={() => {
               navigation.navigate("Coin", {
                 coinID: `${props.id}`,
