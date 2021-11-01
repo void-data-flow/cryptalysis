@@ -15,12 +15,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
-      onPress={() => {
-        navigation.navigate("Coin", {
-          coinID: `${props.id}`,
-          coinName: `${props.name}`,
-        });
-      }}
+      activeOpacity={0.5}
+      // onPress={() => {
+      //   navigation.navigate("Coin", {
+      //     coinID: `${props.id}`,
+      //     coinName: `${props.name}`,
+      //   });
+      // }}
     >
       <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>

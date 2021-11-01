@@ -42,12 +42,12 @@ const ExchangeCard = ({ navigation, route }) => {
         return (
           <TouchableOpacity
             activeOpacity={0.8}
-            onPress={() => {
-              navigation.navigate("Coin", {
-                coinID: `${props.id}`,
-                coinName: `${props.name}`,
-              });
-            }}
+            // onPress={() => {
+            //   navigation.navigate("Coin", {
+            //     coinID: `${props.id}`,
+            //     coinName: `${props.name}`,
+            //   });
+            // }}
             key={index}
           >
             <View style={styles.view}>

@@ -8,27 +8,43 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import FlatButton from "./Shared/button";
 import CoinCard from "./Widgets/CoinCard";
 import ExchangeCard from "./Widgets/ExchangeCard";
+import HighlightGrid from "./Widgets/HighlightGrid";
 
 const openWebsite = () => {
   Linking.openURL("https://manavrachna.edu.in/");
+};
+
+const FlatButton = ({ text, onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <View style={styles.flatButtonStyle}>
+        <Text style={styles.flatButtonStyleText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 };
 
 const Home = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ marginVertical: 10 }}>
+          <HighlightGrid />
+        </View>
+
         <View style={styles.btnSpacer}>
           <FlatButton text="University" onPress={openWebsite} />
         </View>
+
         <View style={styles.btnSpacer}>
           <FlatButton
             text="Coin Market"
             onPress={() => navigation.navigate("CoinMarketList")}
           />
         </View>
+
         <View style={styles.btnSpacer}>
           <FlatButton
             text="Exchange"
@@ -88,6 +104,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: 10,
+  },
+  flatButtonStyle: {
+    borderRadius: 10,
+    paddingVertical: 18,
+    paddingHorizontal: 10,
+    backgroundColor: "#242424",
+    textAlign: "center",
+  },
+  flatButtonStyleText: {
+    color: "white",
+    textTransform: "uppercase",
+    letterSpacing: 1.2,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

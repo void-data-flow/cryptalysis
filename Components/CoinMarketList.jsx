@@ -9,12 +9,12 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
-import { getCoinList, getSingleCoinInfo } from "../api/axios";
-import { Entypo } from "@expo/vector-icons";
+import { getCoinList } from "../api/axios";
 
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       onPress={() => {
         navigation.navigate("Coin", {
           coinID: `${props.id}`,
@@ -80,7 +80,6 @@ const Item = ({ props, navigation }) => {
         </View>
       </View>
     </TouchableOpacity>
-    // FIXME: Don't touch below code
   );
 };
 
@@ -93,7 +92,7 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   const fetchData = async () => {
-    const data = await getCoinList(50);
+    const data = await getCoinList("usd", 50);
     // console.log(data);
     setData([...data]);
   };
