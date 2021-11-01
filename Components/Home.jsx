@@ -1,10 +1,14 @@
-import React, { Fragment } from "react";
-import { StyleSheet, View, Linking, Text } from "react-native";
-
-// FIXME: custom header import. Don't Touch
-// import Header from "./Widgets/Header";
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  Linking,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import FlatButton from "./Shared/button";
-import Card from "./Widgets/Card";
+import CoinCard from "./Widgets/CoinCard";
+import ExchangeCard from "./Widgets/ExchangeCard";
 
 const openWebsite = () => {
   Linking.openURL("https://manavrachna.edu.in/");
@@ -12,37 +16,62 @@ const openWebsite = () => {
 
 const Home = ({ navigation, route }) => {
   return (
-    <Fragment>
-      {/* FIXME: custom header component call. Don't Touch */}
-      {/* <Header backArrow={true} title={"Cryptalysis"} /> */}
-
+    <>
       <View style={styles.container}>
         <View style={styles.btnSpacer}>
           <FlatButton text="University" onPress={openWebsite} />
         </View>
         <View style={styles.btnSpacer}>
           <FlatButton
-            text="CryptoCurrencies"
-            onPress={() => navigation.push("Main")}
+            text="Coin Market"
+            onPress={() => navigation.navigate("CoinMarketList")}
+          />
+        </View>
+        <View style={styles.btnSpacer}>
+          <FlatButton
+            text="Exchange"
+            onPress={() => navigation.navigate("ExchangeList")}
           />
         </View>
 
         <View>
           <View style={styles.subHeader}>
-            <Text>Top Coins</Text>
-            <Text>See All</Text>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>Top Coins</Text>
+            <View>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("CoinMarketList")}
+              >
+                <Text>See All</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <Card navigation={navigation} route={route} />
+          <CoinCard navigation={navigation} route={route} />
+        </View>
+
+        <View>
+          <View style={styles.subHeader}>
+            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+              Exchange List
+            </Text>
+            <View>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("ExchangeList")}
+              >
+                <Text>See All</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <ExchangeCard navigation={navigation} route={route} />
         </View>
       </View>
-    </Fragment>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // justifyContent: "center",
     padding: 20,
   },
   btn: {
@@ -52,7 +81,6 @@ const styles = StyleSheet.create({
   },
   btnSpacer: {
     marginVertical: 16,
-    // marginHorizontal: 20,
   },
   subHeader: {
     flexDirection: "row",
