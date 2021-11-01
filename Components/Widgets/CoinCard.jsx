@@ -11,7 +11,7 @@ import {
 import { getCoinList } from "../../api/axios";
 const { width } = Dimensions.get("window");
 
-const Card = ({ navigation, route }) => {
+const CoinCard = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
 
   const fetchData = async () => {
@@ -64,19 +64,17 @@ const Card = ({ navigation, route }) => {
 
               <View>
                 <Text style={styles.text}>
-                  {Number(props.current_price).toFixed(2)}
+                  $ {Number(props.current_price).toFixed(2)}
                 </Text>
               </View>
 
               <View>
                 <Text>
                   {Number(props.price_change_percentage_24h) > 0 ? (
-                    // <Entypo name="triangle-up" size={22} color="green" />
                     <Text style={{ color: "green" }}>
                       +{Number(props.price_change_percentage_24h).toFixed(2)}%
                     </Text>
                   ) : (
-                    // <Entypo name="triangle-down" size={22} color="red" />
                     <Text style={{ color: "red" }}>
                       {Number(props.price_change_percentage_24h).toFixed(2)}%
                     </Text>
@@ -90,8 +88,6 @@ const Card = ({ navigation, route }) => {
     </ScrollView>
   );
 };
-
-export default Card;
 
 const styles = StyleSheet.create({
   view: {
@@ -108,3 +104,5 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 });
+
+export default CoinCard;

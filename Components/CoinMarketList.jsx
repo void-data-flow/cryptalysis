@@ -55,7 +55,7 @@ const Item = ({ props, navigation }) => {
                 >
                   {props.market_cap_rank}
                 </Text>
-                <Text>({props.symbol})</Text>
+                <Text>({props.symbol.toUpperCase()})</Text>
               </View>
             </View>
           </View>
@@ -67,12 +67,10 @@ const Item = ({ props, navigation }) => {
 
             <Text style={{ textAlign: "right" }}>
               {Number(props.price_change_percentage_24h) > 0 ? (
-                // <Entypo name="triangle-up" size={22} color="green" />
                 <Text style={{ color: "green" }}>
                   +{Number(props.price_change_percentage_24h).toFixed(2)}%
                 </Text>
               ) : (
-                // <Entypo name="triangle-down" size={22} color="red" />
                 <Text style={{ color: "red" }}>
                   {Number(props.price_change_percentage_24h).toFixed(2)}%
                 </Text>
@@ -95,16 +93,14 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   const fetchData = async () => {
-    const data = await getCoinList("usd", 20);
+    const data = await getCoinList(50);
     // console.log(data);
     setData([...data]);
   };
 
   useEffect(() => {
     fetchData();
-    // getSingleCoinInfo("bitcoin")
-    //   .then((data) => console.log(data))
-    //   .catch((err) => console.log(err));
+
     setLoader(false);
   }, []);
 

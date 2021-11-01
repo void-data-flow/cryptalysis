@@ -2,9 +2,9 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import Header from "./Components/Widgets/Header";
 import Home from "./Components/Home";
-import Crypto from "./Components/Crypto";
+import CoinMarketList from "./Components/CoinMarketList";
+import ExchangeList from "./Components/ExchangeList";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -27,10 +27,18 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="Main"
-            component={Crypto}
+            name="CoinMarketList"
+            component={CoinMarketList}
             options={{
               title: "Coin Market",
+              // headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="ExchangeList"
+            component={ExchangeList}
+            options={{
+              title: "Exchange",
               // headerShown: false,
             }}
           />
