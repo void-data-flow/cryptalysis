@@ -5,6 +5,8 @@ import {
   Linking,
   Text,
   TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
 } from "react-native";
 import FlatButton from "./Shared/button";
 import CoinCard from "./Widgets/CoinCard";
@@ -16,8 +18,8 @@ const openWebsite = () => {
 
 const Home = ({ navigation, route }) => {
   return (
-    <>
-      <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.btnSpacer}>
           <FlatButton text="University" onPress={openWebsite} />
         </View>
@@ -65,8 +67,8 @@ const Home = ({ navigation, route }) => {
           </View>
           <ExchangeCard navigation={navigation} route={route} />
         </View>
-      </View>
-    </>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
