@@ -7,6 +7,7 @@ import {
   Text,
   Image,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
 
@@ -39,19 +40,29 @@ const Coin = ({ route, navigation }) => {
           <ActivityIndicator size={60} color="teal" />
         </View>
       ) : (
-        <View>
-          <Image
-            style={{ width: 40, height: 40, marginRight: 10 }}
-            source={{
-              uri: singleCoinDetails.image?.large,
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
             }}
-          />
-          <Text>{singleCoinDetails.name}</Text>
+          >
+            <Image
+              style={{ width: 40, height: 40, marginRight: 10 }}
+              source={{
+                uri: singleCoinDetails.image?.large,
+              }}
+            />
+            <Text>{singleCoinDetails.name}</Text>
+          </View>
           <Text>{singleCoinDetails.symbol}</Text>
           <Text>{singleCoinDetails.market_cap_rank}</Text>
-          <Text>{singleCoinDetails.market_data?.current_price?.usd}</Text>
+          <Text style={{ fontSize: 30 }}>
+            ${singleCoinDetails.market_data?.current_price?.usd}
+          </Text>
           <Text>{singleCoinDetails.description?.en}</Text>
-        </View>
+        </ScrollView>
       )}
     </SafeAreaView>
   );

@@ -12,10 +12,6 @@ import CoinCard from "./Widgets/CoinCard";
 import ExchangeCard from "./Widgets/ExchangeCard";
 import HighlightGrid from "./Widgets/HighlightGrid";
 
-const openWebsite = () => {
-  Linking.openURL("https://manavrachna.edu.in/");
-};
-
 const FlatButton = ({ text, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
@@ -32,24 +28,6 @@ const Home = ({ navigation, route }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ marginVertical: 10 }}>
           <HighlightGrid />
-        </View>
-
-        <View style={styles.btnSpacer}>
-          <FlatButton text="University" onPress={openWebsite} />
-        </View>
-
-        <View style={styles.btnSpacer}>
-          <FlatButton
-            text="Coin Market"
-            onPress={() => navigation.navigate("CoinMarketList")}
-          />
-        </View>
-
-        <View style={styles.btnSpacer}>
-          <FlatButton
-            text="Exchange"
-            onPress={() => navigation.navigate("ExchangeList")}
-          />
         </View>
 
         <View>
