@@ -1,11 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-const SimpleCard = ({ text }) => {
+const SimpleCard = ({ text, iconName }) => {
   return (
     <React.Fragment>
       <View style={styles.wrapper}>
-        <Text>{text}</Text>
+        <Ionicons name={iconName} size={32} color="green" />
+        <Text style={{ fontSize: 18, color: "grey" }}>{text}</Text>
       </View>
     </React.Fragment>
   );
@@ -18,16 +20,13 @@ const HighlightGrid = () => {
     <>
       <View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <SimpleCard text="View 1" />
-          <SimpleCard text="View 2" />
+          <SimpleCard text="Price Alert" iconName="md-pricetag-outline" />
+
+          <SimpleCard text="Portfolio" iconName="briefcase" />
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <SimpleCard text="View 3" />
-          <SimpleCard text="View 4" />
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <SimpleCard text="View 5" />
-          <SimpleCard text="View 6" />
+          <SimpleCard text="Convert" iconName="arrow-redo" />
+          <SimpleCard text="Watchlist" iconName="stopwatch" />
         </View>
       </View>
     </>
@@ -38,9 +37,11 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     borderRadius: 10,
-    padding: 15,
+    padding: 10,
     marginVertical: 5,
     width: "48%",
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
 });
 
