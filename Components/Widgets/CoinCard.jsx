@@ -42,8 +42,8 @@ const CoinCard = ({ navigation, route }) => {
             activeOpacity={0.8}
             onPress={() => {
               navigation.navigate("Coin", {
-                coinID: `${props.id}`,
-                coinName: `${props.name}`,
+                coinID: props.id,
+                coinName: props.symbol.toUpperCase(),
               });
             }}
             key={index}

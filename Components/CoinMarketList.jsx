@@ -17,8 +17,10 @@ const Item = ({ props, navigation }) => {
       activeOpacity={0.8}
       onPress={() => {
         navigation.navigate("Coin", {
-          coinID: `${props.id}`,
-          coinName: `${props.name}`,
+          coinID: props.id,
+          // coinName: props.name,
+          coinName: props.symbol.toUpperCase(),
+          coinImg: props.image
         });
       }}
     >
@@ -55,7 +57,7 @@ const Item = ({ props, navigation }) => {
                 >
                   {props.market_cap_rank}
                 </Text>
-                <Text>({props.symbol.toUpperCase()})</Text>
+                <Text style={{color: "grey"}}>({props.symbol.toUpperCase()})</Text>
               </View>
             </View>
           </View>
