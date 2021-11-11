@@ -11,22 +11,12 @@ import {
 } from "react-native";
 import { getExchangeList } from "../api/axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
-// const webNavigator = () => {
-
-// }
+import Loader from "./Widgets/Loader";
 
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
       activeOpacity={0.5}
-      // onPress={() => {
-      //   navigation.navigate("Coin", {
-      //     coinID: `${props.id}`,
-      //     coinName: `${props.name}`,
-      //   });
-      // }}
-      // onPress={webNavigator}
       onPress={() =>
         navigation.navigate("Browser", {
           exchangeName: props.name,
@@ -124,10 +114,7 @@ const CryptoList = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       {loader ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <ActivityIndicator size={60} color="teal" />
-        </View>
+        <Loader />
       ) : (
         <FlatList
           data={coinData}

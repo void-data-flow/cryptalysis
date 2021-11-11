@@ -36,20 +36,18 @@ const ExchangeCard = ({ navigation, route }) => {
         left: 30,
         bottom: 0,
         right: 30,
-      }}
-    >
+      }}>
       {coinData.map((props, index) => {
         return (
           <TouchableOpacity
             activeOpacity={0.8}
-            // onPress={() => {
-            //   navigation.navigate("Coin", {
-            //     coinID: `${props.id}`,
-            //     coinName: `${props.name}`,
-            //   });
-            // }}
-            key={index}
-          >
+            onPress={() =>
+              navigation.navigate("Browser", {
+                exchangeName: props.name,
+                url: props.url,
+              })
+            }
+            key={index}>
             <View style={styles.view}>
               <View>
                 <Image
@@ -66,8 +64,7 @@ const ExchangeCard = ({ navigation, route }) => {
                     fontSize: 14,
                     paddingHorizontal: 2,
                     marginVertical: 5,
-                  }}
-                >
+                  }}>
                   <MaterialCommunityIcons
                     name="police-badge"
                     size={12}
@@ -108,10 +105,10 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: "white",
     width: width / 2,
-    margin: 10,
-    height: 150,
-    borderRadius: 10,
-    padding: 10,
+    margin: 5,
+    height: 140,
+    borderRadius: 8,
+    padding: 15,
   },
 
   text: {

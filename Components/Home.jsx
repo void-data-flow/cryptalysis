@@ -2,7 +2,6 @@ import React from "react";
 import {
   StyleSheet,
   View,
-  Linking,
   Text,
   TouchableOpacity,
   SafeAreaView,
@@ -12,15 +11,15 @@ import CoinCard from "./Widgets/CoinCard";
 import ExchangeCard from "./Widgets/ExchangeCard";
 import HighlightGrid from "./Widgets/HighlightGrid";
 
-const FlatButton = ({ text, onPress }) => {
-  return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-      <View style={styles.flatButtonStyle}>
-        <Text style={styles.flatButtonStyleText}>{text}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+// const FlatButton = ({ text, onPress }) => {
+//   return (
+//     <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+//       <View style={styles.flatButtonStyle}>
+//         <Text style={styles.flatButtonStyleText}>{text}</Text>
+//       </View>
+//     </TouchableOpacity>
+//   );
+// };
 
 const Home = ({ navigation, route }) => {
   return (
@@ -30,14 +29,13 @@ const Home = ({ navigation, route }) => {
           <HighlightGrid />
         </View>
 
-        <View>
+        <View style={{ marginVertical: 5 }}>
           <View style={styles.subHeader}>
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>Top Coins</Text>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>Top Coins</Text>
             <View>
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate("CoinMarketList")}
-              >
+                onPress={() => navigation.navigate("CoinMarketList")}>
                 <Text>See All</Text>
               </TouchableOpacity>
             </View>
@@ -45,16 +43,15 @@ const Home = ({ navigation, route }) => {
           <CoinCard navigation={navigation} route={route} />
         </View>
 
-        <View>
+        <View style={{ marginVertical: 5 }}>
           <View style={styles.subHeader}>
-            <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
               Exchange List
             </Text>
             <View>
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate("ExchangeList")}
-              >
+                onPress={() => navigation.navigate("ExchangeList")}>
                 <Text>See All</Text>
               </TouchableOpacity>
             </View>

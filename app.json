@@ -2,7 +2,7 @@
   "expo": {
     "name": "Cryptalysis",
     "slug": "Cryptalysis",
-    "version": "1.2.0",
+    "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/favicon.png",
     "splash": {
@@ -19,15 +19,15 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.harshmittal1750.cryptalysis",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.5.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/favicon.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#242424"
       },
       "package": "com.harshmittal1750.cryptalysis",
-      "versionCode": 1
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"

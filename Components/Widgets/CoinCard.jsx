@@ -34,8 +34,7 @@ const CoinCard = ({ navigation, route }) => {
         left: 30,
         bottom: 0,
         right: 30,
-      }}
-    >
+      }}>
       {coinData.map((props, index) => {
         return (
           <TouchableOpacity
@@ -46,8 +45,7 @@ const CoinCard = ({ navigation, route }) => {
                 coinName: props.symbol.toUpperCase(),
               });
             }}
-            key={index}
-          >
+            key={index}>
             <View style={styles.view}>
               <View>
                 <Image
@@ -94,10 +92,10 @@ const styles = StyleSheet.create({
   view: {
     backgroundColor: "white",
     width: width / 2,
-    margin: 10,
-    height: 150,
-    borderRadius: 10,
-    padding: 10,
+    margin: 5,
+    height: 160,
+    borderRadius: 8,
+    padding: 15,
   },
 
   text: {

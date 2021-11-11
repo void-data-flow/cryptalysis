@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { getCoinList } from "../api/axios";
+import Loader from "./Widgets/Loader";
 
 const Item = ({ props, navigation }) => {
   return (
@@ -20,10 +21,9 @@ const Item = ({ props, navigation }) => {
           coinID: props.id,
           // coinName: props.name,
           coinName: props.symbol.toUpperCase(),
-          coinImg: props.image
+          coinImg: props.image,
         });
-      }}
-    >
+      }}>
       <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
@@ -44,8 +44,7 @@ const Item = ({ props, navigation }) => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "flex-start",
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     paddingHorizontal: 5,
@@ -53,11 +52,12 @@ const Item = ({ props, navigation }) => {
                     backgroundColor: "#EFF2F5",
                     borderRadius: 50,
                     marginTop: 1,
-                  }}
-                >
+                  }}>
                   {props.market_cap_rank}
                 </Text>
-                <Text style={{color: "grey"}}>({props.symbol.toUpperCase()})</Text>
+                <Text style={{ color: "grey" }}>
+                  ({props.symbol.toUpperCase()})
+                </Text>
               </View>
             </View>
           </View>
@@ -108,11 +108,7 @@ const CryptoList = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       {loader ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <ActivityIndicator size={60} color="teal" />
-        </View>
+        <Loader />
       ) : (
         <FlatList
           data={coinData}
