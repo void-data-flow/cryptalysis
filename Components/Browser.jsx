@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 
 const Browser = ({ navigation, route }) => {
-  console.log(route);
+  // console.log(route);
 
   return (
     <React.Fragment>

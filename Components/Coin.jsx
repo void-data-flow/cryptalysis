@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
+import Loader from "./Widgets/Loader";
 
 const Coin = ({ route, navigation }) => {
   const { coinID, coinName } = route.params;
@@ -33,20 +34,17 @@ const Coin = ({ route, navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {loader ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <ActivityIndicator size={60} color="#242424" />
-        </View>
+        <Loader />
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={styles.container}>
           <View
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-            }}
-          >
+            }}>
             <Image
               style={{ width: 80, height: 80 }}
               source={{

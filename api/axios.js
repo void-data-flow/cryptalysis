@@ -17,7 +17,7 @@ const getExchangeList = async (perPage) => {
   const apiData = await instance.get(
     `https://api.coingecko.com/api/v3/exchanges?per_page=${perPage}page=1`
   );
-  // console.log(apiData.data);
+  console.log(apiData.data.length);
   return apiData.data;
 };
 
@@ -25,8 +25,13 @@ const getSingleCoinInfo = async (coinId) => {
   const apiData = await instance.get(
     `coins/${coinId}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
   );
-  // console.log(apiData.data);
+  // console.log(apiData.data.length);
   return apiData.data;
 };
 
-export { getCoinList, getSingleCoinInfo, getExchangeList };
+const getGlobalData = async () => {
+  const apiData = await instance.get(`global`);
+  return apiData.data;
+};
+
+export { getCoinList, getSingleCoinInfo, getExchangeList, getGlobalData };
