@@ -22,12 +22,11 @@ const Coin = ({ route, navigation }) => {
     getSingleCoinInfo(coinIDLowerCase)
       .then((data) => {
         // console.log(data);
+        setLoader(false);
         setSingleCoinDetails(data);
       })
       .catch((err) => console.log(err));
-
-    setLoader(false);
-  }, []);
+  }, [coinIDLowerCase]);
 
   console.log(coinID);
   // console.log(singleCoinDetails);
@@ -37,10 +36,10 @@ const Coin = ({ route, navigation }) => {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <ActivityIndicator size={60} color="teal" />
+          <ActivityIndicator size={60} color="#242424" />
         </View>
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
           <View
             style={{
               display: "flex",
@@ -49,14 +48,14 @@ const Coin = ({ route, navigation }) => {
             }}
           >
             <Image
-              style={{ width: 40, height: 40, marginRight: 10 }}
+              style={{ width: 80, height: 80 }}
               source={{
                 uri: singleCoinDetails.image?.large,
               }}
             />
-            <Text>{singleCoinDetails.name}</Text>
+            <Text>{singleCoinDetails?.name}</Text>
           </View>
-          <Text>{singleCoinDetails.symbol}</Text>
+          <Text>{coinName}</Text>
           <Text>{singleCoinDetails.market_cap_rank}</Text>
           <Text style={{ fontSize: 30 }}>
             ${singleCoinDetails.market_data?.current_price?.usd}

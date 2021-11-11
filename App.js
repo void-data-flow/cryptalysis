@@ -12,12 +12,29 @@ import Coin from "./Components/Coin";
 
 const Stack = createNativeStackNavigator();
 
+/*
+black: 242424
+
+blue: 246EE9
+
+red: FF2400
+
+green: 3EB489
+
+*/
+
 export default function App() {
   return (
     <React.Fragment>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#246EE9",
+            },
+            headerTintColor: "#fff",
+          }}>
           <Stack.Screen
             name="Home"
             component={Home}
@@ -45,7 +62,9 @@ export default function App() {
           <Stack.Screen
             name="Coin"
             component={Coin}
-            options={({ route }) => ({ title: route.params.coinName })}
+            options={({ route }) => ({
+              title: route.params.coinName,
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>
