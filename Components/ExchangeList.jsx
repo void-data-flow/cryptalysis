@@ -12,6 +12,10 @@ import {
 import { getExchangeList } from "../api/axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
+// const webNavigator = () => {
+
+// }
+
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
@@ -22,7 +26,13 @@ const Item = ({ props, navigation }) => {
       //     coinName: `${props.name}`,
       //   });
       // }}
-    >
+      // onPress={webNavigator}
+      onPress={() =>
+        navigation.navigate("Browser", {
+          exchangeName: props.name,
+          url: props.url,
+        })
+      }>
       <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
@@ -43,8 +53,7 @@ const Item = ({ props, navigation }) => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "flex-start",
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     paddingHorizontal: 5,
@@ -52,8 +61,7 @@ const Item = ({ props, navigation }) => {
                     backgroundColor: "#EFF2F5",
                     borderRadius: 50,
                     marginTop: 1,
-                  }}
-                >
+                  }}>
                   {props.trust_score_rank}
                 </Text>
                 <Text
@@ -62,8 +70,7 @@ const Item = ({ props, navigation }) => {
                     fontSize: 14,
                     paddingHorizontal: 2,
                     // marginTop: 5,
-                  }}
-                >
+                  }}>
                   <MaterialCommunityIcons
                     name="police-badge"
                     size={12}
@@ -110,16 +117,15 @@ const CryptoList = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    fetchData();
     setLoader(false);
+    fetchData();
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       {loader ? (
         <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <ActivityIndicator size={60} color="teal" />
         </View>
       ) : (

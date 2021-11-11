@@ -5,10 +5,11 @@ import { StyleSheet, View } from "react-native";
 import Home from "./Components/Home";
 import CoinMarketList from "./Components/CoinMarketList";
 import ExchangeList from "./Components/ExchangeList";
+import Coin from "./Components/Coin";
+import Browser from "./Components/Browser";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Coin from "./Components/Coin";
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,13 @@ export default function App() {
             component={Coin}
             options={({ route }) => ({
               title: route.params.coinName,
+            })}
+          />
+          <Stack.Screen
+            name="Browser"
+            component={Browser}
+            options={({ route }) => ({
+              headerTitle: route.params.exchangeName,
             })}
           />
         </Stack.Navigator>
