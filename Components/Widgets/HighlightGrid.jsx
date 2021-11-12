@@ -61,12 +61,12 @@ const HighlightGrid = () => {
             <SimpleCard
               text="Market Cap"
               iconName="arrow-redo"
-              subText={String(globalObj.total_market_cap.usd.toFixed(2))}
+              // subText={String(globalObj.total_market_cap.usd.toFixed(2))}
             />
             <SimpleCard
               text="Volume"
               iconName="stopwatch"
-              subText={String(globalObj.total_volume.usd.toFixed(2))}
+              // subText={String(globalObj.total_volume.usd.toFixed(2))}
             />
           </View>
         </View>
