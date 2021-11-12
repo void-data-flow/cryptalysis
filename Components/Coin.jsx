@@ -58,7 +58,21 @@ const Coin = ({ route, navigation }) => {
           <Text style={{ fontSize: 30 }}>
             ${singleCoinDetails.market_data?.current_price?.usd}
           </Text>
-          <Text>{singleCoinDetails.description?.en}</Text>
+
+          <View>
+            {!singleCoinDetails.description?.en ? (
+              <Text style={{ fontSize: 20 }}>No Result Found</Text>
+            ) : (
+              <Text
+                style={{
+                  fontSize: 16,
+                  textAlign: "justify",
+                  paddingVertical: 5,
+                }}>
+                {singleCoinDetails.description?.en}
+              </Text>
+            )}
+          </View>
         </ScrollView>
       )}
     </SafeAreaView>
