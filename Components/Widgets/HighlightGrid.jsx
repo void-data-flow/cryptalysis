@@ -35,7 +35,8 @@ const HighlightGrid = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log("Line 38", globalObj.total_market_cap);
+  console.log("Total Market Cap:", globalObj.total_market_cap?.usd.toFixed(2));
+  console.log("Total volume:", globalObj.total_volume?.usd.toFixed(2));
 
   return (
     <SafeAreaView>
@@ -61,12 +62,12 @@ const HighlightGrid = () => {
             <SimpleCard
               text="Market Cap"
               iconName="arrow-redo"
-              // subText={String(globalObj.total_market_cap.usd.toFixed(2))}
+              // subText={globalObj.total_market_cap?.usd.toFixed(2)}
             />
             <SimpleCard
               text="Volume"
               iconName="stopwatch"
-              // subText={String(globalObj.total_volume.usd.toFixed(2))}
+              // subText={globalObj.total_volume?.usd.toFixed(2)}
             />
           </View>
         </View>

@@ -19,7 +19,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-dotenv": "^3.2.0",
     "react-native-paper": "^4.9.2",
-    "react-native-web": "^0.17.5"
+    "react-native-web": "^0.17.5",
+    "react-native-webview": "^11.6.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

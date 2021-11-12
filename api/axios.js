@@ -17,7 +17,7 @@ const getExchangeList = async (perPage) => {
   const apiData = await instance.get(
     `https://api.coingecko.com/api/v3/exchanges?per_page=${perPage}page=1`
   );
-  console.log(apiData.data.length);
+  // console.log(apiData.data.length);
   return apiData.data;
 };
 

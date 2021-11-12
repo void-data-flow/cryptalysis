@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   Image,
-  ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
 import { getExchangeList } from "../api/axios";
@@ -100,15 +99,15 @@ const CryptoList = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  const fetchData = async () => {
-    const data = await getExchangeList(50);
-    // console.log(data);
-    setData([...data]);
-  };
-
   useEffect(() => {
-    setLoader(false);
-    fetchData();
+    getExchangeList(50)
+      .then((data) => {
+        setLoader(false);
+        setData([...data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
