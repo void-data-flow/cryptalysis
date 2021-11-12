@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { getExchangeList } from "../../api/axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
+ 
 const { width } = Dimensions.get("window");
 
 const ExchangeCard = ({ navigation, route }) => {
