@@ -13,7 +13,7 @@ const Browser = ({ navigation, route }) => {
           source={{
             uri: route.params.url,
           }}
-          style={{ flex: 1 }}
+          // style={{ flex: 1 }}
         />
         {/* <Text>{route.params.url}</Text> */}
       </View>

@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import {
   SafeAreaView,
   View,
-  FlatList,
   StyleSheet,
   Text,
   Image,
-  ActivityIndicator,
   ScrollView,
+  useWindowDimensions,
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
 import Loader from "./Widgets/Loader";
 
+import RenderHTML from "react-native-render-html";
+
 const Coin = ({ route, navigation }) => {
+  const { width } = useWindowDimensions();
+
   const { coinID, coinName } = route.params;
   const coinIDLowerCase = coinID.toLowerCase();
 
@@ -30,7 +33,19 @@ const Coin = ({ route, navigation }) => {
   }, [coinIDLowerCase]);
 
   console.log(coinID);
-  // console.log(singleCoinDetails);
+  const HTML = `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div style="font-size: 16px; padding: 5px 0;">${singleCoinDetails.description?.en}</div>
+  </body>
+  </html>`;
+  // console.log(HTML);
+
   return (
     <SafeAreaView style={styles.container}>
       {loader ? (
@@ -63,14 +78,34 @@ const Coin = ({ route, navigation }) => {
             {!singleCoinDetails.description?.en ? (
               <Text style={{ fontSize: 20 }}>No Result Found</Text>
             ) : (
-              <Text
-                style={{
-                  fontSize: 16,
-                  textAlign: "justify",
-                  paddingVertical: 5,
-                }}>
-                {singleCoinDetails.description?.en}
-              </Text>
+              <View>
+                <Text style={{ fontWeight: "bold", marginVertical: 5 }}>
+                  Text Component
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    paddingVertical: 5,
+                  }}>
+                  {singleCoinDetails.description?.en}
+                </Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontWeight: "bold", marginVertical: 5 }}>
+                    RenderHTML Component
+                  </Text>
+
+                  <RenderHTML
+                    style={{
+                      fontSize: 16,
+                      paddingVertical: 5,
+                    }}
+                    source={{
+                      html: HTML,
+                    }}
+                    contentWidth={width}
+                  />
+                </View>
+              </View>
             )}
           </View>
         </ScrollView>

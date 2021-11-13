@@ -15,7 +15,7 @@ import Loader from "./Widgets/Loader";
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.5}
+      activeOpacity={0.8}
       onPress={() =>
         navigation.navigate("Browser", {
           exchangeName: props.name,
@@ -100,7 +100,7 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    getExchangeList(50)
+    getExchangeList(100)
       .then((data) => {
         setLoader(false);
         setData([...data]);

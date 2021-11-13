@@ -34,7 +34,7 @@ const HighlightGrid = () => {
           console.log("Total Market Cap:", globalObj);
           console.log("Total volume:", globalObj);
           setLoader(false);
-          setGlobalObj(resp.data);
+          setGlobalObj(resp);
         }, 5000);
       })
       .catch((err) => console.log(err));

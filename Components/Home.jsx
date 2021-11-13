@@ -10,7 +10,7 @@ import {
 import CoinCard from "./Widgets/CoinCard";
 import ExchangeCard from "./Widgets/ExchangeCard";
 import HighlightGrid from "./Widgets/HighlightGrid";
-
+import StatusCard from "./Widgets/StatusCard";
 // const FlatButton = ({ text, onPress }) => {
 //   return (
 //     <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
@@ -57,6 +57,20 @@ const Home = ({ navigation, route }) => {
             </View>
           </View>
           <ExchangeCard navigation={navigation} route={route} />
+        </View>
+
+        <View style={{ marginVertical: 5 }}>
+          <View style={styles.subHeader}>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>Updates</Text>
+            {/* <View>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => navigation.navigate("ExchangeList")}>
+                <Text>See All</Text>
+              </TouchableOpacity>
+            </View> */}
+          </View>
+          <StatusCard navigation={navigation} route={route} />
         </View>
       </ScrollView>
     </SafeAreaView>

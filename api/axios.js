@@ -31,7 +31,18 @@ const getSingleCoinInfo = async (coinId) => {
 
 const getGlobalData = async () => {
   const apiData = await instance.get(`global`);
+  return apiData.data.data;
+};
+
+const getStatusUpdates = async (statusCount) => {
+  const apiData = await instance.get(`status_updates?per_page=${statusCount}`);
   return apiData.data;
 };
 
-export { getCoinList, getSingleCoinInfo, getExchangeList, getGlobalData };
+export {
+  getCoinList,
+  getSingleCoinInfo,
+  getExchangeList,
+  getGlobalData,
+  getStatusUpdates,
+};
