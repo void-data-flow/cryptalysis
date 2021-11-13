@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
 import Loader from "./Widgets/Loader";
-
+import Chart from "./Widgets/Chart";
 import RenderHTML from "react-native-render-html";
 
 const Coin = ({ route, navigation }) => {
@@ -53,13 +53,15 @@ const Coin = ({ route, navigation }) => {
       ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={styles.container}>
+          style={styles.container}
+        >
           <View
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-            }}>
+            }}
+          >
             <Image
               style={{ width: 80, height: 80 }}
               source={{
@@ -73,7 +75,7 @@ const Coin = ({ route, navigation }) => {
           <Text style={{ fontSize: 30 }}>
             ${singleCoinDetails.market_data?.current_price?.usd}
           </Text>
-
+          <Chart></Chart>
           <View>
             {!singleCoinDetails.description?.en ? (
               <Text style={{ fontSize: 20 }}>No Result Found</Text>
@@ -86,7 +88,8 @@ const Coin = ({ route, navigation }) => {
                   style={{
                     fontSize: 16,
                     paddingVertical: 5,
-                  }}>
+                  }}
+                >
                   {singleCoinDetails.description?.en}
                 </Text>
                 <View style={{ flex: 1 }}>
@@ -119,6 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginVertical: 5,
     marginHorizontal: 10,
+    backgroundColor:"white",
   },
 });
 
