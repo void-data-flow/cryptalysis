@@ -19,7 +19,6 @@ const Item = ({ props, navigation }) => {
       onPress={() => {
         navigation.navigate("Coin", {
           coinID: props.id,
-          // coinName: props.name,
           coinName: props.symbol.toUpperCase(),
           coinImg: props.image,
         });
@@ -64,7 +63,7 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text style={{ textAlign: "right", marginVertical: 1 }}>
-              $ {Number(props.current_price).toFixed(2)}
+              ${Number(props.current_price).toFixed(2)}
             </Text>
 
             <Text style={{ textAlign: "right" }}>
@@ -85,24 +84,23 @@ const Item = ({ props, navigation }) => {
   );
 };
 
-const FooterLoader = () => {
-  return <Text>Some famous coins</Text>;
-};
+// const FooterLoader = () => {
+//   return <Text>Some famous coins</Text>;
+// };
 
 const CryptoList = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  const fetchData = async () => {
-    const data = await getCoinList("usd", 50);
-    // console.log(data);
-    setData([...data]);
-  };
-
   useEffect(() => {
-    fetchData();
-
-    setLoader(false);
+    getCoinList("usd", 100)
+      .then((data) => {
+        setLoader(false);
+        setData([...data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

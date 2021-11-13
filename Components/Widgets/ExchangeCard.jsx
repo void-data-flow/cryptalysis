@@ -10,23 +10,28 @@ import {
 } from "react-native";
 import { getExchangeList } from "../../api/axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
- 
+import Loader from "./Loader";
+
 const { width } = Dimensions.get("window");
 
 const ExchangeCard = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
-
-  const fetchData = async () => {
-    const data = await getExchangeList(5);
-    // console.log(data);
-    setData([...data]);
-  };
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    getExchangeList(5)
+      .then((data) => {
+        setLoader(false);
+        setData([...data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <ScrollView
       style={styles.container}
       showsHorizontalScrollIndicator={false}

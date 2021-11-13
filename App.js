@@ -139,62 +139,13 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar style="light" />
-      {/* <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: "#246EE9",
-            },
-            headerTintColor: "#fff",
-          }}>
-          <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              title: "Cryptalysis",
-              // headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="CoinMarketList"
-            component={CoinMarketList}
-            options={{
-              title: "Coin Market",
-              // headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="ExchangeList"
-            component={ExchangeList}
-            options={{
-              title: "Exchange",
-              // headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="Coin"
-            component={Coin}
-            options={({ route }) => ({
-              title: route.params.coinName,
-            })}
-          />
-          <Stack.Screen
-            name="Browser"
-            component={Browser}
-            options={({ route }) => ({
-              headerTitle: route.params.exchangeName,
-            })}
-          />
-        </Stack.Navigator>
-      </NavigationContainer> */}
-
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{ headerShown: false }}
           initialRouteName="Home"
           activeColor="#f0edf6"
           inactiveColor="grey"
-          barStyle={{ backgroundColor: "#242424" }}>
+          barStyle={{ backgroundColor: "#242424", paddingVertical: 3 }}>
           <Tab.Screen
             name="Home Stack"
             component={HomeStackScreen}

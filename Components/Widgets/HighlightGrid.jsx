@@ -6,7 +6,7 @@ import { getGlobalData } from "../../api/axios";
 import Loader from "./Loader";
 
 const SimpleCard = ({ text, iconName, subText }) => {
-  console.log(subText);
+  // console.log(subText);
   return (
     <React.Fragment>
       <View style={styles.wrapper}>
@@ -27,15 +27,18 @@ const HighlightGrid = () => {
   React.useEffect(() => {
     getGlobalData()
       .then((resp) => {
-        console.log(resp.data.total_volume.usd);
-        console.log(resp.data.total_market_cap.usd);
-        setLoader(false);
-        setGlobalObj(resp.data);
+        // console.log(resp.data?.total_volume?.usd);
+        // console.log(resp.data?.total_market_cap?.usd);
+
+        setTimeout(() => {
+          console.log("Total Market Cap:", globalObj);
+          console.log("Total volume:", globalObj);
+          setLoader(false);
+          setGlobalObj(resp);
+        }, 5000);
       })
       .catch((err) => console.log(err));
   }, []);
-
-  console.log("Line 38", globalObj.total_market_cap);
 
   return (
     <SafeAreaView>
@@ -61,12 +64,12 @@ const HighlightGrid = () => {
             <SimpleCard
               text="Market Cap"
               iconName="arrow-redo"
-              // subText={String(globalObj.total_market_cap.usd.toFixed(2))}
+              subText={globalObj.total_market_cap?.usd.toFixed(2)}
             />
             <SimpleCard
               text="Volume"
               iconName="stopwatch"
-              // subText={String(globalObj.total_volume.usd.toFixed(2))}
+              subText={globalObj.total_volume?.usd.toFixed(2)}
             />
           </View>
         </View>

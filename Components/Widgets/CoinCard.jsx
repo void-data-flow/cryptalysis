@@ -10,21 +10,26 @@ import {
 } from "react-native";
 import { getCoinList } from "../../api/axios";
 const { width } = Dimensions.get("window");
+import Loader from "./Loader";
 
 const CoinCard = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
-
-  const fetchData = async () => {
-    const data = await getCoinList("usd", 5);
-    // console.log(data);
-    setData([...data]);
-  };
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    getCoinList("usd", 5)
+      .then((data) => {
+        setLoader(false);
+        setData([...data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <ScrollView
       style={styles.container}
       showsHorizontalScrollIndicator={false}
@@ -63,7 +68,7 @@ const CoinCard = ({ navigation, route }) => {
 
               <View>
                 <Text style={styles.text}>
-                  $ {Number(props.current_price).toFixed(2)}
+                  ${Number(props.current_price).toFixed(2)}
                 </Text>
               </View>
 
