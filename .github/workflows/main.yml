@@ -29,7 +29,7 @@ jobs:
         run: |
           var=$(date)
           var=`date`
-          echo "$var" - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT }}\n >> REPORT.md
+          echo "$var" - ${{ env.GIT_COMMIT_MESSAGE_SUBJECT }} >> REPORT.md
 
       - name: Raise Pull Request
         id: cpr
@@ -48,5 +48,5 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v1
         with:
           project-name: Development
-          column-name: In progress
+          column-name: To do
           issue-number: ${{ steps.cpr.outputs.pull-request-number }}
