@@ -8,7 +8,7 @@ const StatusCard = () => {
   const [loader, setLoader] = React.useState(true);
 
   React.useEffect(() => {
-    getStatusUpdates(20)
+    getStatusUpdates(5)
       .then((respData) => {
         // console.log("REs", respData.status_updates);
         setLoader(false);
@@ -32,7 +32,7 @@ const StatusCard = () => {
               <View style={styles.cardView} key={index}>
                 <View style={{ marginEnd: 10 }}>
                   <Image
-                    style={{ width: 60, height: 60, padding: 5 }}
+                    style={{ width: 45, height: 45, padding: 5 }}
                     source={{ uri: dataObj?.project?.image?.large }}
                   />
                 </View>
@@ -43,10 +43,6 @@ const StatusCard = () => {
                   <Text style={{ paddingBottom: 2, color: "grey" }}>
                     {dataObj?.user ? dataObj?.user : "Anonymous"} -{" "}
                     {new Date().toLocaleString(dataObj?.created_at)}
-                  </Text>
-                  <Text style={{ paddingBottom: 2, color: "grey" }}>
-                    Project Name - {dataObj?.project.name}, type -{" "}
-                    {dataObj?.project.type}
                   </Text>
                   <Text>
                     {dataObj?.description ? dataObj?.description : "Not found"}

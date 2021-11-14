@@ -14,9 +14,7 @@ const getCoinList = async (currency, listLimit) => {
 };
 
 const getExchangeList = async (perPage) => {
-  const apiData = await instance.get(
-    `https://api.coingecko.com/api/v3/exchanges?per_page=${perPage}page=1`
-  );
+  const apiData = await instance.get(`exchanges?per_page=${perPage}page=1`);
   // console.log(apiData.data.length);
   return apiData.data;
 };
@@ -35,7 +33,9 @@ const getGlobalData = async () => {
 };
 
 const getStatusUpdates = async (statusCount) => {
-  const apiData = await instance.get(`status_updates?per_page=${statusCount}`);
+  const apiData = await instance.get(
+    `status_updates?per_page=${statusCount}&page=1`
+  );
   return apiData.data;
 };
 

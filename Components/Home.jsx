@@ -61,14 +61,16 @@ const Home = ({ navigation, route }) => {
 
         <View style={{ marginVertical: 5 }}>
           <View style={styles.subHeader}>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>Updates</Text>
-            {/* <View>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              Event Updates
+            </Text>
+            <View>
               <TouchableOpacity
                 activeOpacity={0.8}
-                onPress={() => navigation.navigate("ExchangeList")}>
+                onPress={() => navigation.navigate("EventUpdates")}>
                 <Text>See All</Text>
               </TouchableOpacity>
-            </View> */}
+            </View>
           </View>
           <StatusCard navigation={navigation} route={route} />
         </View>

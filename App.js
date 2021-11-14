@@ -80,6 +80,16 @@ function HomeStackScreen() {
           headerTitle: route.params.exchangeName,
         })}
       />
+      <HomeNav.Screen
+        name="EventUpdates"
+        component={Events}
+        // options={({ route }) => ({
+        //   headerTitle: "Event Updates",
+        // })}
+        options={{
+          title: "Event Updates",
+        }}
+      />
     </HomeNav.Navigator>
   );
 }
