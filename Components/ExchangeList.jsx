@@ -131,8 +131,8 @@ const CryptoList = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 5,
-    marginHorizontal: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   wrapper: {
     backgroundColor: "white",

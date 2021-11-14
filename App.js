@@ -7,6 +7,8 @@ import CoinMarketList from "./Components/CoinMarketList";
 import ExchangeList from "./Components/ExchangeList";
 import Coin from "./Components/Coin";
 import Browser from "./Components/Browser";
+import About from "./Components/Aboutus";
+import Events from "./Components/EventPage";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -16,6 +18,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 const HomeNav = createNativeStackNavigator();
 const CoinNav = createNativeStackNavigator();
 const ExNav = createNativeStackNavigator();
+const EventsNav = createNativeStackNavigator();
+const AboutNav = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 /*
@@ -89,7 +93,7 @@ function CoinStackScreen() {
         },
         headerTintColor: "#fff",
       }}>
-      <HomeNav.Screen
+      <CoinNav.Screen
         name="CoinMarketList"
         component={CoinMarketList}
         options={{
@@ -97,7 +101,7 @@ function CoinStackScreen() {
           // headerShown: false,
         }}
       />
-      <HomeNav.Screen
+      <CoinNav.Screen
         name="Coin"
         component={Coin}
         options={({ route }) => ({
@@ -107,6 +111,7 @@ function CoinStackScreen() {
     </CoinNav.Navigator>
   );
 }
+
 function ExchangeStackScreen() {
   return (
     <ExNav.Navigator
@@ -116,7 +121,7 @@ function ExchangeStackScreen() {
         },
         headerTintColor: "#fff",
       }}>
-      <HomeNav.Screen
+      <ExNav.Screen
         name="ExchangeList"
         component={ExchangeList}
         options={{
@@ -124,7 +129,7 @@ function ExchangeStackScreen() {
           // headerShown: false,
         }}
       />
-      <HomeNav.Screen
+      <ExNav.Screen
         name="Browser"
         component={Browser}
         options={({ route }) => ({
@@ -132,6 +137,48 @@ function ExchangeStackScreen() {
         })}
       />
     </ExNav.Navigator>
+  );
+}
+
+function EventsStackScreen() {
+  return (
+    <EventsNav.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#242424",
+        },
+        headerTintColor: "#fff",
+      }}>
+      <EventsNav.Screen
+        name="Events"
+        component={Events}
+        options={{
+          title: "Event Updates",
+          // headerShown: false,
+        }}
+      />
+    </EventsNav.Navigator>
+  );
+}
+
+function AboutStackScreen() {
+  return (
+    <AboutNav.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#242424",
+        },
+        headerTintColor: "#fff",
+      }}>
+      <AboutNav.Screen
+        name="About"
+        component={About}
+        options={{
+          title: "About us",
+          // headerShown: false,
+        }}
+      />
+    </AboutNav.Navigator>
   );
 }
 
@@ -145,12 +192,13 @@ export default function App() {
           initialRouteName="Home"
           activeColor="#f0edf6"
           inactiveColor="grey"
-          barStyle={{ backgroundColor: "#242424", paddingVertical: 3 }}>
+          labeled={false}
+          barStyle={{ backgroundColor: "#242424", paddingVertical: 2 }}>
           <Tab.Screen
             name="Home Stack"
             component={HomeStackScreen}
             options={{
-              tabBarLabel: "Home",
+              // tabBarLabel: "Home",
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="home" color={color} size={26} />
               ),
@@ -160,7 +208,7 @@ export default function App() {
             name="Coin Market Stack"
             component={CoinStackScreen}
             options={{
-              tabBarLabel: "Coins",
+              // tabBarLabel: "Coins",
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons
                   name="bitcoin"
@@ -174,10 +222,34 @@ export default function App() {
             name="Exchange Stack"
             component={ExchangeStackScreen}
             options={{
-              tabBarLabel: "Exchange",
+              // tabBarLabel: "Exchange",
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons
                   name="chart-bar-stacked"
+                  color={color}
+                  size={26}
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Event Status"
+            component={EventsStackScreen}
+            options={{
+              // tabBarLabel: "Events",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="update" color={color} size={26} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="About us"
+            component={AboutStackScreen}
+            options={{
+              // tabBarLabel: "About us",
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="information-outline"
                   color={color}
                   size={26}
                 />
@@ -194,8 +266,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  navigationContainer: {
-    backgroundColor: "teal",
   },
 });
