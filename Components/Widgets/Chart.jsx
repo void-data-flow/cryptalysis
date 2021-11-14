@@ -1,11 +1,13 @@
-import React from "react";
-import { Dimensions,View, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+
+import { Dimensions, View, Text } from "react-native";
 import {
   ChartDot,
   ChartPath,
   ChartPathProvider,
-   monotoneCubicInterpolation
+  monotoneCubicInterpolation,
 } from "@rainbow-me/animated-charts";
+// import { getChartData } from "../../api/axios";
 export const { width: SIZE } = Dimensions.get("window");
 export const data = [
   { x: 1453075200, y: 1.47 },
@@ -24,12 +26,31 @@ export const data = [
   { x: 1454198400, y: 2.2 },
 ];
 const points = monotoneCubicInterpolation({ data, range: 40 });
+
 const Chart = () => {
+  // const arrayDataObject = [];
+  // const [chartData, setChartData] = useState([]);
+  // function cnvrtApiData(data) {
+  //   data.map((item, index) => {
+  //     arrayDataObject[index] = { x: item.x, y: item.y };
+  //     console.log(arrayDataObject);
+  //     // arrayDataObject["y"] = item[1];
+  //   });
+  // }
+  // useEffect(() => {
+  //   getChartData("bitcoin")
+  //     .then((chartData) => {
+  //       setTimeout(() => {
+  //         // setChartData(chartData);
+  //         console.log(chartData);
+  //         cnvrtApiData(chartData);
+  //       }, 5000);
+  //     })
+  //     .catch((err) => console.log(err));
+  // });
   return (
     <ChartPathProvider data={{ points, smoothingStrategy: "bezier" }}>
-      <View>
-      
-      </View>
+      <View></View>
       <ChartPath height={SIZE / 2} stroke="#242424" width={SIZE} />
       <ChartDot style={{ backgroundColor: "white" }} />
     </ChartPathProvider>
