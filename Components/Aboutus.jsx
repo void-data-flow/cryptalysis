@@ -9,12 +9,18 @@ const About = () => {
         <Text style={styles.heading}>About Application</Text>
         <Text style={styles.para}>
           Cryptalysis is a crypto currency price tracking application which also
-          helps the user to get updated from the world of crypto market
+          helps the user to get updated from the world of crypto market. User
+          can see the data of the change in prices through the graph which is
+          designed for individual crypto currency.
+        </Text>
+        <Text style={styles.para}>
+          The aim of this project is to help the enthusiastic learners join the
+          world of cryptocurrencies.
         </Text>
       </View>
 
       <View style={styles.viewBlock}>
-        <Text style={styles.heading}>Members</Text>
+        <Text style={styles.heading}>Developers</Text>
         <View style={styles.memberRow}>
           <Text style={styles.memberRowText}>Sanchit Bajaj</Text>
           <Text
@@ -62,6 +68,7 @@ const styles = StyleSheet.create({
   },
   para: {
     fontSize: 16,
+    padding: 2,
   },
   memberRow: {
     flexDirection: "row",

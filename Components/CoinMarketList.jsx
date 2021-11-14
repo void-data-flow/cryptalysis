@@ -16,7 +16,7 @@ import { commaSepertor } from "./Widgets/comma";
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={0.7}
       onPress={() => {
         navigation.navigate("Coin", {
           coinID: props.id,
@@ -48,7 +48,8 @@ const Item = ({ props, navigation }) => {
                 }}>
                 <Text
                   style={{
-                    paddingHorizontal: 5,
+                    fontSize: 12,
+                    padding: 2,
                     marginEnd: 1,
                     backgroundColor: "#EFF2F5",
                     borderRadius: 50,

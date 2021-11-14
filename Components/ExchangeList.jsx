@@ -15,7 +15,7 @@ import { commaSepertor } from "./Widgets/comma";
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
-      activeOpacity={0.8}
+      activeOpacity={0.7}
       onPress={() =>
         navigation.navigate("Browser", {
           exchangeName: props.name,
@@ -46,7 +46,8 @@ const Item = ({ props, navigation }) => {
                 }}>
                 <Text
                   style={{
-                    paddingHorizontal: 5,
+                    fontSize: 12,
+                    padding: 2,
                     marginEnd: 1,
                     backgroundColor: "#EFF2F5",
                     borderRadius: 50,
@@ -57,13 +58,13 @@ const Item = ({ props, navigation }) => {
                 <Text
                   style={{
                     color: "green",
-                    fontSize: 14,
+                    fontSize: 16,
                     paddingHorizontal: 2,
                     // marginTop: 5,
                   }}>
                   <MaterialCommunityIcons
                     name="police-badge"
-                    size={12}
+                    size={14}
                     color="green"
                   />
                   {props.trust_score}
@@ -76,6 +77,11 @@ const Item = ({ props, navigation }) => {
             <Text
               style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
               BTC {commaSepertor(Number(props.trade_volume_24h_btc).toFixed(2))}
+            </Text>
+
+            <Text style={{ textAlign: "right", color: "grey", fontSize: 14 }}>
+              Year Est.{" "}
+              {props.year_established ? props.year_established : "----"}
             </Text>
 
             {/* <Text style={{ textAlign: "right" }}>
