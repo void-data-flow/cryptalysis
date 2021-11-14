@@ -11,6 +11,7 @@ import {
 import { getCoinList } from "../../api/axios";
 const { width } = Dimensions.get("window");
 import Loader from "./Loader";
+import { commaSepertor } from "./comma";
 
 const CoinCard = ({ navigation, route }) => {
   const [coinData, setData] = useState([]);
@@ -68,7 +69,7 @@ const CoinCard = ({ navigation, route }) => {
 
               <View>
                 <Text style={styles.text}>
-                  ${Number(props.current_price).toFixed(2)}
+                  ${commaSepertor(Number(props.current_price).toFixed(2))}
                 </Text>
               </View>
 
@@ -76,11 +77,18 @@ const CoinCard = ({ navigation, route }) => {
                 <Text>
                   {Number(props.price_change_percentage_24h) > 0 ? (
                     <Text style={{ color: "green" }}>
-                      +{Number(props.price_change_percentage_24h).toFixed(2)}%
+                      +
+                      {commaSepertor(
+                        Number(props.price_change_percentage_24h).toFixed(2)
+                      )}
+                      %
                     </Text>
                   ) : (
                     <Text style={{ color: "red" }}>
-                      {Number(props.price_change_percentage_24h).toFixed(2)}%
+                      {commaSepertor(
+                        Number(props.price_change_percentage_24h).toFixed(2)
+                      )}
+                      %
                     </Text>
                   )}
                 </Text>

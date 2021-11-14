@@ -11,6 +11,8 @@ import {
 import { getCoinList } from "../api/axios";
 import Loader from "./Widgets/Loader";
 
+import { commaSepertor } from "./Widgets/comma";
+
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
@@ -35,7 +37,7 @@ const Item = ({ props, navigation }) => {
             </View>
             <View style={{ flexDirection: "column" }}>
               <Text
-                style={{ textAlign: "left", marginVertical: 1, fontSize: 18 }}>
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}>
                 {props.name}
               </Text>
 
@@ -63,18 +65,25 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text
-              style={{ textAlign: "right", marginVertical: 1, fontSize: 18 }}>
-              ${Number(props.current_price).toFixed(2)}
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
+              ${commaSepertor(Number(props.current_price).toFixed(2))}
             </Text>
 
             <Text style={{ textAlign: "right" }}>
               {Number(props.price_change_percentage_24h) > 0 ? (
                 <Text style={{ color: "green" }}>
-                  +{Number(props.price_change_percentage_24h).toFixed(2)}%
+                  +
+                  {commaSepertor(
+                    Number(props.price_change_percentage_24h).toFixed(2)
+                  )}
+                  %
                 </Text>
               ) : (
                 <Text style={{ color: "red" }}>
-                  {Number(props.price_change_percentage_24h).toFixed(2)}%
+                  {commaSepertor(
+                    Number(props.price_change_percentage_24h).toFixed(2)
+                  )}
+                  %
                 </Text>
               )}
             </Text>
@@ -125,8 +134,8 @@ const CryptoList = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 5,
-    marginHorizontal: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   wrapper: {
     backgroundColor: "white",

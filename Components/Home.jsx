@@ -79,7 +79,9 @@ const Home = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    flex: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   btn: {
     borderRadius: 8,
