@@ -9,7 +9,10 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
+
+import { commaSepertor } from "./Widgets/comma";
 import Loader from "./Widgets/Loader";
+
 import Chart from "./Widgets/Chart";
 import RenderHTML from "react-native-render-html";
 
@@ -71,7 +74,10 @@ const Coin = ({ route, navigation }) => {
           <Text>{coinName}</Text>
           <Text>{singleCoinDetails.market_cap_rank}</Text>
           <Text style={{ fontSize: 30 }}>
-            ${singleCoinDetails.market_data?.current_price?.usd}
+            $
+            {singleCoinDetails.market_data?.current_price?.usd
+              ? commaSepertor(singleCoinDetails.market_data?.current_price?.usd)
+              : ""}
           </Text>
           <Chart></Chart>
           <View>

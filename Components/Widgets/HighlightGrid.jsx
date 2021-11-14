@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { getGlobalData } from "../../api/axios";
-
+import { commaSepertor } from "./comma";
 import Loader from "./Loader";
 
 const SimpleCard = ({ text, iconName, subText }) => {
@@ -31,8 +31,8 @@ const HighlightGrid = () => {
         // console.log(resp.data?.total_market_cap?.usd);
 
         setTimeout(() => {
-          console.log("Total Market Cap:", globalObj);
-          console.log("Total volume:", globalObj);
+          // console.log("Total Market Cap:", globalObj);
+          // console.log("Total volume:", globalObj);
           setLoader(false);
           setGlobalObj(resp);
         }, 5000);
@@ -51,12 +51,18 @@ const HighlightGrid = () => {
             <SimpleCard
               text="Coins"
               iconName="md-pricetag-outline"
-              subText={globalObj.active_cryptocurrencies}
+              subText={
+                globalObj?.active_cryptocurrencies
+                  ? commaSepertor(globalObj?.active_cryptocurrencies)
+                  : ""
+              }
             />
             <SimpleCard
               text="Exchange"
               iconName="briefcase"
-              subText={globalObj.markets}
+              subText={
+                globalObj?.markets ? commaSepertor(globalObj?.markets) : ""
+              }
             />
           </View>
           <View
@@ -64,12 +70,20 @@ const HighlightGrid = () => {
             <SimpleCard
               text="Market Cap"
               iconName="arrow-redo"
-              subText={globalObj.total_market_cap?.usd.toFixed(2)}
+              subText={
+                globalObj.total_market_cap?.usd
+                  ? commaSepertor(globalObj.total_market_cap?.usd.toFixed(2))
+                  : ""
+              }
             />
             <SimpleCard
               text="Volume"
               iconName="stopwatch"
-              subText={globalObj.total_volume?.usd.toFixed(2)}
+              subText={
+                globalObj.total_volume?.usd
+                  ? commaSepertor(globalObj.total_volume?.usd.toFixed(2))
+                  : ""
+              }
             />
           </View>
         </View>

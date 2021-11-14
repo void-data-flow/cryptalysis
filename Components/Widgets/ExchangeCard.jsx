@@ -11,6 +11,7 @@ import {
 import { getExchangeList } from "../../api/axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Loader from "./Loader";
+import { commaSepertor } from "./comma";
 
 const { width } = Dimensions.get("window");
 
@@ -81,7 +82,8 @@ const ExchangeCard = ({ navigation, route }) => {
 
               <View>
                 <Text style={styles.text}>
-                  BTC {Number(props.trade_volume_24h_btc).toFixed(2)}
+                  BTC{" "}
+                  {commaSepertor(Number(props.trade_volume_24h_btc).toFixed(2))}
                 </Text>
               </View>
 

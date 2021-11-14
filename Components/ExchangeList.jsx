@@ -11,7 +11,7 @@ import {
 import { getExchangeList } from "../api/axios";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Loader from "./Widgets/Loader";
-
+import { commaSepertor } from "./Widgets/comma";
 const Item = ({ props, navigation }) => {
   return (
     <TouchableOpacity
@@ -27,14 +27,15 @@ const Item = ({ props, navigation }) => {
           <View style={{ flexDirection: "row" }}>
             <View style={{ flexDirection: "column" }}>
               <Image
-                style={{ width: 40, height: 40, marginRight: 10 }}
+                style={{ width: 45, height: 45, marginRight: 10 }}
                 source={{
                   uri: props.image,
                 }}
               />
             </View>
             <View style={{ flexDirection: "column" }}>
-              <Text style={{ textAlign: "left", marginVertical: 1 }}>
+              <Text
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}>
                 {props.name}
               </Text>
 
@@ -72,8 +73,9 @@ const Item = ({ props, navigation }) => {
           </View>
 
           <View>
-            <Text style={{ textAlign: "right", marginVertical: 1 }}>
-              BTC {Number(props.trade_volume_24h_btc).toFixed(2)}
+            <Text
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
+              BTC {commaSepertor(Number(props.trade_volume_24h_btc).toFixed(2))}
             </Text>
 
             {/* <Text style={{ textAlign: "right" }}>
