@@ -39,10 +39,18 @@ const getStatusUpdates = async (statusCount) => {
   return apiData.data;
 };
 
+const getChartData = async (coinId) => {
+  const apiData = await instance.get(
+    `coins/${coinId}/market_chart?vs_currency=usd&days=1`
+  );
+  return apiData.data?.prices;
+};
+
 export {
   getCoinList,
   getSingleCoinInfo,
   getExchangeList,
   getGlobalData,
   getStatusUpdates,
+  getChartData,
 };
