@@ -11,6 +11,8 @@ import {
 export const { width: SIZE } = Dimensions.get("window");
 export const data = [
   { x: 1453075200, y: 1.47 },
+  // { x: 1453075200, y: 1.47 },
+
   { x: 1453161600, y: 1.37 },
   { x: 1453248000, y: 1.53 },
   { x: 1453334400, y: 1.54 },
