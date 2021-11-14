@@ -6,7 +6,6 @@ import {
   StyleSheet,
   Text,
   Image,
-  ActivityIndicator,
   TouchableOpacity,
 } from "react-native";
 import { getCoinList } from "../api/axios";
@@ -28,14 +27,15 @@ const Item = ({ props, navigation }) => {
           <View style={{ flexDirection: "row" }}>
             <View style={{ flexDirection: "column" }}>
               <Image
-                style={{ width: 40, height: 40, marginRight: 10 }}
+                style={{ width: 45, height: 45, marginRight: 10 }}
                 source={{
                   uri: props.image,
                 }}
               />
             </View>
             <View style={{ flexDirection: "column" }}>
-              <Text style={{ textAlign: "left", marginVertical: 1 }}>
+              <Text
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 18 }}>
                 {props.name}
               </Text>
 
@@ -62,7 +62,8 @@ const Item = ({ props, navigation }) => {
           </View>
 
           <View>
-            <Text style={{ textAlign: "right", marginVertical: 1 }}>
+            <Text
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 18 }}>
               ${Number(props.current_price).toFixed(2)}
             </Text>
 
