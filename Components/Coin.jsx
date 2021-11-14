@@ -53,15 +53,13 @@ const Coin = ({ route, navigation }) => {
       ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={styles.container}
-        >
+          style={styles.container}>
           <View
             style={{
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-            }}
-          >
+            }}>
             <Image
               style={{ width: 80, height: 80 }}
               source={{
@@ -88,8 +86,7 @@ const Coin = ({ route, navigation }) => {
                   style={{
                     fontSize: 16,
                     paddingVertical: 5,
-                  }}
-                >
+                  }}>
                   {singleCoinDetails.description?.en}
                 </Text>
                 <View style={{ flex: 1 }}>
@@ -120,9 +117,9 @@ const Coin = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 5,
-    marginHorizontal: 10,
-    backgroundColor:"white",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: "white",
   },
 });
 
