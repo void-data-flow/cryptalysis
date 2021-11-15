@@ -35,7 +35,8 @@ const Coin = ({ route, navigation }) => {
       .catch((err) => console.log(err));
   }, [coinIDLowerCase]);
 
-  console.log(coinID);
+  // console.log(coinID);
+
   const HTML = `<!DOCTYPE html>
   <html lang="en">
   <head>
@@ -47,7 +48,6 @@ const Coin = ({ route, navigation }) => {
     <div style="font-size: 16px; padding: 5px 0;">${singleCoinDetails.description?.en}</div>
   </body>
   </html>`;
-  // console.log(HTML);
 
   return (
     <SafeAreaView style={styles.container}>
