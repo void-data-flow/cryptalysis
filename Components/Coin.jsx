@@ -9,6 +9,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
+import { getMarketData } from "../api/cryptoService";
 
 import { commaSepertor } from "./Widgets/comma";
 import Loader from "./Widgets/Loader";
@@ -23,19 +24,28 @@ const Coin = ({ route, navigation }) => {
   const coinIDLowerCase = coinID.toLowerCase();
 
   const [singleCoinDetails, setSingleCoinDetails] = useState({});
+  const [justForChart, setJustForChart] = useState();
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     getSingleCoinInfo(coinIDLowerCase)
-      .then((data) => {
-        // console.log(data);
+      .then((resp) => {
         setLoader(false);
-        setSingleCoinDetails(data);
+
+        setSingleCoinDetails(resp);
+
+        const correctValues = getMarketData(resp);
+
+        correctValues
+          .then((successData) => {
+            setJustForChart(successData);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }, [coinIDLowerCase]);
 
-  // console.log(coinID);
+  // console.log(justForChart);
 
   const HTML = `<!DOCTYPE html>
   <html lang="en">
@@ -79,7 +89,10 @@ const Coin = ({ route, navigation }) => {
               ? commaSepertor(singleCoinDetails.market_data?.current_price?.usd)
               : ""}
           </Text>
-          <Chart></Chart>
+          <View>
+            {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
+          </View>
+
           <View>
             {!singleCoinDetails.description?.en ? (
               <Text style={{ fontSize: 20 }}>No Result Found</Text>

@@ -21,7 +21,7 @@ const getExchangeList = async (perPage) => {
 
 const getSingleCoinInfo = async (coinId) => {
   const apiData = await instance.get(
-    `coins/${coinId}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
+    `coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true`
   );
   // console.log(apiData.data.length);
   return apiData.data;
@@ -39,18 +39,10 @@ const getStatusUpdates = async (statusCount) => {
   return apiData.data;
 };
 
-const getChartData = async (coinId) => {
-  const apiData = await instance.get(
-    `coins/${coinId}/market_chart?vs_currency=usd&days=1`
-  );
-  return apiData.data?.prices;
-};
-
 export {
   getCoinList,
   getSingleCoinInfo,
   getExchangeList,
   getGlobalData,
   getStatusUpdates,
-  getChartData,
 };

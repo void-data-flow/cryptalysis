@@ -5,9 +5,10 @@ import {
   ChartDot,
   ChartPath,
   ChartPathProvider,
+  ChartXLabel,
+  ChartYLabel,
   monotoneCubicInterpolation,
 } from "@rainbow-me/animated-charts";
-import Loader from "./Loader";
 
 export const { width: SIZE } = Dimensions.get("window");
 export const data = [
@@ -691,12 +692,23 @@ export const data = [
 
 const points = monotoneCubicInterpolation({ data, range: 40 });
 
-const Chart = () => {
+const Chart = ({ chartArray }) => {
   return (
     <View>
-      <ChartPathProvider data={{ points, smoothingStrategy: "bezier" }}>
-        <ChartPath height={SIZE / 2} stroke="#242424" width={SIZE} />
+      <ChartPathProvider
+        data={{ points: chartArray, smoothingStrategy: "bezier" }}>
+        <ChartPath
+          height={SIZE / 2}
+          stroke="#242424"
+          width={SIZE}
+          hapticsEnabled={true}
+        />
         <ChartDot style={{ backgroundColor: "blue" }} />
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <ChartXLabel />
+          <ChartYLabel />
+        </View>
       </ChartPathProvider>
     </View>
   );
