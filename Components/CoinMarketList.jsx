@@ -23,7 +23,8 @@ const Item = ({ props, navigation }) => {
           coinName: props.symbol.toUpperCase(),
           coinImg: props.image,
         });
-      }}>
+      }}
+    >
       <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
@@ -37,7 +38,8 @@ const Item = ({ props, navigation }) => {
             </View>
             <View style={{ flexDirection: "column" }}>
               <Text
-                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}>
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}
+              >
                 {props.name}
               </Text>
 
@@ -45,7 +47,8 @@ const Item = ({ props, navigation }) => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "flex-start",
-                }}>
+                }}
+              >
                 <Text
                   style={{
                     fontSize: 12,
@@ -54,7 +57,8 @@ const Item = ({ props, navigation }) => {
                     backgroundColor: "#EFF2F5",
                     borderRadius: 50,
                     marginTop: 1,
-                  }}>
+                  }}
+                >
                   {props.market_cap_rank}
                 </Text>
                 <Text style={{ color: "grey" }}>
@@ -66,7 +70,8 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text
-              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}
+            >
               ${commaSepertor(Number(props.current_price).toFixed(2))}
             </Text>
 
@@ -104,7 +109,7 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    getCoinList("usd", 100)
+    getCoinList("usd", 2000)
       .then((data) => {
         setLoader(false);
         setData([...data]);

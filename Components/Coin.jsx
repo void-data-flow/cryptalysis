@@ -66,20 +66,22 @@ const Coin = ({ route, navigation }) => {
       ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={styles.container}>
-          <View>
+          style={styles.container}
+        >
+          <View style={{ flexDirection: "row", marginVertical: 5 }}>
             <Image
               style={{ width: 40, height: 40 }}
               source={{
                 uri: singleCoinDetails.image?.large,
               }}
             />
-            <Text>
-              {singleCoinDetails?.name} ({coinName})
-            </Text>
+            <View style={{ marginStart: 5 }}>
+              <Text>
+                {singleCoinDetails?.name} ({coinName})
+              </Text>
+              <Text>Rank - {singleCoinDetails.market_cap_rank}</Text>
+            </View>
           </View>
-
-          <Text>Rank - {singleCoinDetails.market_cap_rank}</Text>
 
           <View>
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>
@@ -95,7 +97,14 @@ const Coin = ({ route, navigation }) => {
           <View>
             {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
           </View>
-
+          {/* <View style={{ marginVertical: 5 }}>
+            <View style={styles.listItem}>
+              <Text>MarketCap</Text>
+              <Text>
+                ${commaSepertor(singleCoinDetails.market_data?.market_cap?.usd)}
+              </Text>
+            </View>
+          </View> */}
           <View>
             {!singleCoinDetails.description?.en ? (
               <Text style={{ fontSize: 20 }}>No Result Found</Text>
@@ -108,7 +117,8 @@ const Coin = ({ route, navigation }) => {
                   style={{
                     fontSize: 16,
                     paddingVertical: 5,
-                  }}>
+                  }}
+                >
                   {singleCoinDetails.description?.en}
                 </Text>
                 <View style={{ flex: 1 }}>
@@ -142,6 +152,12 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     backgroundColor: "white",
+  },
+  listItem: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+
+    paddingVertical: 5,
   },
 });
 
