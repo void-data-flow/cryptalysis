@@ -690,7 +690,7 @@ export const data = [
   },
 ];
 
-const points = monotoneCubicInterpolation({ data, range: 40 });
+const points = monotoneCubicInterpolation({ data, range: 50 });
 
 const Chart = ({ chartArray }) => {
   return (

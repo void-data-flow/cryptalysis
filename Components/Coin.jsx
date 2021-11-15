@@ -67,28 +67,31 @@ const Coin = ({ route, navigation }) => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={styles.container}>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-            }}>
+          <View>
             <Image
-              style={{ width: 80, height: 80 }}
+              style={{ width: 40, height: 40 }}
               source={{
                 uri: singleCoinDetails.image?.large,
               }}
             />
-            <Text>{singleCoinDetails?.name}</Text>
+            <Text>
+              {singleCoinDetails?.name} ({coinName})
+            </Text>
           </View>
-          <Text>{coinName}</Text>
-          <Text>{singleCoinDetails.market_cap_rank}</Text>
-          <Text style={{ fontSize: 30 }}>
-            $
-            {singleCoinDetails.market_data?.current_price?.usd
-              ? commaSepertor(singleCoinDetails.market_data?.current_price?.usd)
-              : ""}
-          </Text>
+
+          <Text>Rank - {singleCoinDetails.market_cap_rank}</Text>
+
+          <View>
+            <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+              $
+              {singleCoinDetails.market_data?.current_price?.usd
+                ? commaSepertor(
+                    singleCoinDetails.market_data?.current_price?.usd.toFixed(3)
+                  )
+                : ""}
+            </Text>
+          </View>
+
           <View>
             {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
           </View>
