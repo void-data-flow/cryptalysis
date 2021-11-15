@@ -11,66 +11,57 @@ import CoinCard from "./Widgets/CoinCard";
 import ExchangeCard from "./Widgets/ExchangeCard";
 import HighlightGrid from "./Widgets/HighlightGrid";
 import StatusCard from "./Widgets/StatusCard";
-// const FlatButton = ({ text, onPress }) => {
-//   return (
-//     <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
-//       <View style={styles.flatButtonStyle}>
-//         <Text style={styles.flatButtonStyleText}>{text}</Text>
-//       </View>
-//     </TouchableOpacity>
-//   );
-// };
 
 const Home = ({ navigation, route }) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ marginVertical: 10 }}>
+        {/* Grid card block */}
+        <View style={styles.blockMargin}>
           <HighlightGrid />
         </View>
 
-        <View style={{ marginVertical: 5 }}>
+        {/* Top Coins block */}
+        <View style={styles.blockMargin}>
           <View style={styles.subHeader}>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>Top Coins</Text>
-            <View>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => navigation.navigate("CoinMarketList")}>
-                <Text>See All</Text>
-              </TouchableOpacity>
-            </View>
+            <Text style={[styles.staticText, { fontWeight: "bold" }]}>
+              Top Coins
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("CoinMarketList")}>
+              <Text style={styles.staticText}>See All</Text>
+            </TouchableOpacity>
           </View>
           <CoinCard navigation={navigation} route={route} />
         </View>
 
-        <View style={{ marginVertical: 5 }}>
+        {/* Exchange list block */}
+        <View style={styles.blockMargin}>
           <View style={styles.subHeader}>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            <Text style={[styles.staticText, { fontWeight: "bold" }]}>
               Exchange List
             </Text>
-            <View>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => navigation.navigate("ExchangeList")}>
-                <Text>See All</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("ExchangeList")}>
+              <Text style={styles.staticText}>See All</Text>
+            </TouchableOpacity>
           </View>
           <ExchangeCard navigation={navigation} route={route} />
         </View>
 
-        <View style={{ marginVertical: 5 }}>
+        {/* Event updates block */}
+        <View style={styles.blockMargin}>
           <View style={styles.subHeader}>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            <Text style={[styles.staticText, { fontWeight: "bold" }]}>
               Event Updates
             </Text>
-            <View>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                onPress={() => navigation.navigate("EventUpdates")}>
-                <Text>See All</Text>
-              </TouchableOpacity>
-            </View>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("EventUpdates")}>
+              <Text style={styles.staticText}>See All</Text>
+            </TouchableOpacity>
           </View>
           <StatusCard navigation={navigation} route={route} />
         </View>
@@ -85,32 +76,16 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
   },
-  btn: {
-    borderRadius: 8,
-    paddingVertical: 12,
-    textAlign: "center",
-  },
-  btnSpacer: {
-    marginVertical: 16,
+  blockMargin: {
+    marginVertical: 10,
   },
   subHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginVertical: 10,
   },
-  flatButtonStyle: {
-    borderRadius: 10,
-    paddingVertical: 18,
-    paddingHorizontal: 10,
-    backgroundColor: "#242424",
-    textAlign: "center",
-  },
-  flatButtonStyleText: {
-    color: "white",
-    textTransform: "uppercase",
-    letterSpacing: 1.2,
-    fontWeight: "bold",
-    textAlign: "center",
+  staticText: {
+    fontSize: 18,
   },
 });
 

@@ -55,51 +55,32 @@ const ExchangeCard = ({ navigation, route }) => {
             }
             key={index}>
             <View style={styles.view}>
-              <View>
-                <Image
-                  style={{ width: 50, height: 50 }}
-                  source={{
-                    uri: props.image,
-                  }}
-                />
-              </View>
-              <View>
-                <Text
-                  style={{
-                    color: "green",
-                    fontSize: 14,
-                    paddingHorizontal: 2,
-                    marginVertical: 5,
-                  }}>
-                  <MaterialCommunityIcons
-                    name="police-badge"
-                    size={12}
-                    color="green"
+              <View style={styles.flexProp}>
+                <View>
+                  <Image
+                    style={{ width: 55, height: 55 }}
+                    source={{
+                      uri: props.image,
+                    }}
                   />
-                  {props.trust_score}
-                </Text>
+                </View>
+                <View>
+                  <Text style={styles.trustIcon}>
+                    <MaterialCommunityIcons
+                      name="police-badge"
+                      size={15}
+                      color="green"
+                    />
+                    {props.trust_score}
+                  </Text>
+                  <Text style={styles.text}>
+                    BTC{" "}
+                    {commaSepertor(
+                      Number(props.trade_volume_24h_btc).toFixed(2)
+                    )}
+                  </Text>
+                </View>
               </View>
-
-              <View>
-                <Text style={styles.text}>
-                  BTC{" "}
-                  {commaSepertor(Number(props.trade_volume_24h_btc).toFixed(2))}
-                </Text>
-              </View>
-
-              {/* <View>
-                <Text>
-                  {Number(props.price_change_percentage_24h) > 0 ? (
-                    <Text style={{ color: "green" }}>
-                      +{Number(props.price_change_percentage_24h).toFixed(2)}%
-                    </Text>
-                  ) : (
-                    <Text style={{ color: "red" }}>
-                      {Number(props.price_change_percentage_24h).toFixed(2)}%
-                    </Text>
-                  )}
-                </Text>
-              </View> */}
             </View>
           </TouchableOpacity>
         );
@@ -113,14 +94,22 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: width / 2,
     margin: 5,
-    height: 140,
     borderRadius: 8,
     padding: 15,
   },
-
-  text: {
+  flexProp: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  trustIcon: {
+    color: "green",
     fontSize: 16,
     marginVertical: 5,
+  },
+  text: {
+    fontSize: 14,
+    marginVertical: 2,
   },
 });
 
