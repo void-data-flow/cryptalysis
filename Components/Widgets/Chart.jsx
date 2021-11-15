@@ -697,12 +697,7 @@ const Chart = ({ chartArray }) => {
     <View>
       <ChartPathProvider
         data={{ points: chartArray, smoothingStrategy: "bezier" }}>
-        <ChartPath
-          height={SIZE / 2}
-          stroke="#242424"
-          width={SIZE}
-          hapticsEnabled={true}
-        />
+        <ChartPath height={SIZE / 2} stroke="#242424" width={SIZE} />
         <ChartDot style={{ backgroundColor: "blue" }} />
 
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>

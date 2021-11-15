@@ -10,9 +10,18 @@ const SimpleCard = ({ text, iconName, subText }) => {
   return (
     <React.Fragment>
       <View style={styles.wrapper}>
-        <Ionicons name={iconName} size={20} color="#242424" />
-        <Text style={{ fontSize: 14, color: "grey" }}>{text}</Text>
-        <Text style={{ fontSize: 14, color: "grey" }}>{subText}</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "bold",
+            color: "#242424",
+            paddingVertical: 2,
+          }}>
+          {text}
+        </Text>
+        <Text style={{ fontSize: 14, color: "#242424", paddingVertical: 2 }}>
+          {subText}
+        </Text>
       </View>
     </React.Fragment>
   );
@@ -49,8 +58,7 @@ const HighlightGrid = () => {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <SimpleCard
-              text="Coins"
-              iconName="md-pricetag-outline"
+              text="Coins Listed"
               subText={
                 globalObj?.active_cryptocurrencies
                   ? commaSepertor(globalObj?.active_cryptocurrencies)
@@ -58,8 +66,7 @@ const HighlightGrid = () => {
               }
             />
             <SimpleCard
-              text="Exchange"
-              iconName="briefcase"
+              text="Total Exchanges"
               subText={
                 globalObj?.markets ? commaSepertor(globalObj?.markets) : ""
               }
@@ -68,17 +75,17 @@ const HighlightGrid = () => {
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}>
             <SimpleCard
-              text="Market Cap"
-              iconName="arrow-redo"
+              text="Total Market Cap"
               subText={
                 globalObj.total_market_cap?.usd
-                  ? commaSepertor(globalObj.total_market_cap?.usd.toFixed(2))
+                  ? `$${commaSepertor(
+                      globalObj.total_market_cap?.usd.toFixed(2)
+                    )}`
                   : ""
               }
             />
             <SimpleCard
-              text="Volume"
-              iconName="stopwatch"
+              text="24H Volume"
               subText={
                 globalObj.total_volume?.usd
                   ? commaSepertor(globalObj.total_volume?.usd.toFixed(2))

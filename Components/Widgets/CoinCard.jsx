@@ -55,7 +55,7 @@ const CoinCard = ({ navigation, route }) => {
             <View style={styles.view}>
               <View>
                 <Image
-                  style={{ width: 50, height: 50 }}
+                  style={{ width: 55, height: 55 }}
                   source={{
                     uri: props.image,
                   }}
@@ -67,13 +67,16 @@ const CoinCard = ({ navigation, route }) => {
                 </Text>
               </View>
 
-              <View>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginVertical: 2,
+                }}>
                 <Text style={styles.text}>
                   ${commaSepertor(Number(props.current_price).toFixed(2))}
                 </Text>
-              </View>
 
-              <View>
                 <Text>
                   {Number(props.price_change_percentage_24h) > 0 ? (
                     <Text style={{ color: "green" }}>
@@ -106,14 +109,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: width / 2,
     margin: 5,
-    height: 160,
     borderRadius: 8,
     padding: 15,
   },
 
   text: {
     fontSize: 16,
-    marginVertical: 5,
+    // marginVertical: 2,
   },
 });
 
