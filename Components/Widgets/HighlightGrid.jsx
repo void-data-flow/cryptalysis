@@ -44,9 +44,9 @@ const HighlightGrid = () => {
           // console.log("Total volume:", globalObj);
           setLoader(false);
           setGlobalObj(resp);
-        }, 5000);
+        }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }, []);
 
   return (
@@ -88,7 +88,7 @@ const HighlightGrid = () => {
               text="24H Volume"
               subText={
                 globalObj.total_volume?.usd
-                  ? commaSepertor(globalObj.total_volume?.usd.toFixed(2))
+                  ? `$${commaSepertor(globalObj.total_volume?.usd.toFixed(2))}`
                   : ""
               }
             />

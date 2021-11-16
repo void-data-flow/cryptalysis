@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { Dimensions, View, Text } from "react-native";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
 import {
   ChartDot,
   ChartPath,
@@ -10,7 +10,7 @@ import {
   monotoneCubicInterpolation,
 } from "@rainbow-me/animated-charts";
 
-export const { width: SIZE } = Dimensions.get("window");
+export const { width } = Dimensions.get("window");
 export const data = [
   {
     x: 1625261034,
@@ -690,23 +690,57 @@ export const data = [
   },
 ];
 
-const points = monotoneCubicInterpolation({ data, range: 50 });
-
 const Chart = ({ chartArray }) => {
-  return (
-    <View>
-      <ChartPathProvider
-        data={{ points: chartArray, smoothingStrategy: "bezier" }}>
-        <ChartPath height={SIZE / 2} stroke="#242424" width={SIZE} />
-        <ChartDot style={{ backgroundColor: "blue" }} />
+  const points = monotoneCubicInterpolation({ data: chartArray, range: 50 });
 
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <ChartXLabel />
-          <ChartYLabel />
+  // console.log(typeof ChartXLabel());
+
+  return (
+    <View style={{ marginHorizontal: 0 }}>
+      <ChartPathProvider
+        data={{
+          points: points,
+          nativePoints: points,
+          smoothingStrategy: "bezier",
+        }}>
+        <ChartPath
+          height={width / 2}
+          stroke="#242424"
+          width={width}
+          strokeWidth={2}
+          selectedStrokeWidth={2}
+          hitSlop={20}
+        />
+        <ChartDot
+          style={[{ backgroundColor: "black" }, styles.shadow]}
+          size={14}
+        />
+
+        <View style={styles.textDataStyle}>
+          <Text>Time</Text>
+          <Text>Price</Text>
+        </View>
+
+        <View style={styles.textDataStyle}>
+          <ChartXLabel style={{ color: "#242424" }} />
+          <ChartYLabel style={{ color: "#242424" }} />
         </View>
       </ChartPathProvider>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  shadow: {
+    shadowColor: "#242424",
+    shadowOpacity: 0.5,
+    elevation: 5,
+  },
+  textDataStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
+  },
+});
 
 export default Chart;
