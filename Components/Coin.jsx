@@ -66,24 +66,53 @@ const Coin = ({ route, navigation }) => {
       ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
-          style={styles.container}
-        >
-          <View style={{ flexDirection: "row", marginVertical: 5 }}>
-            <Image
-              style={{ width: 40, height: 40 }}
-              source={{
-                uri: singleCoinDetails.image?.large,
-              }}
-            />
-            <View style={{ marginStart: 5 }}>
-              <Text>
-                {singleCoinDetails?.name} ({coinName})
+          style={styles.container}>
+          <View style={[{ flexDirection: "row" }, styles.blockMargin]}>
+            <View style={styles.shadow}>
+              <Image
+                style={styles.imgDesign}
+                source={{
+                  uri: singleCoinDetails.image?.large,
+                }}
+              />
+            </View>
+            <View style={{ marginStart: 10 }}>
+              <Text style={styles.listItemText}>
+                {singleCoinDetails?.name} (
+                {singleCoinDetails?.symbol
+                  ? singleCoinDetails?.symbol.toUpperCase()
+                  : ""}
+                )
               </Text>
-              <Text>Rank - {singleCoinDetails.market_cap_rank}</Text>
+
+              {Number(
+                singleCoinDetails?.market_data?.price_change_percentage_24h
+              ) > 0 ? (
+                <Text style={[{ color: "green" }, styles.listItemText]}>
+                  +
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_24h
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              ) : (
+                <Text style={[{ color: "red" }, styles.listItemText]}>
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_24h
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              )}
             </View>
           </View>
 
-          <View>
+          <View style={styles.blockMargin}>
             <Text style={{ fontSize: 30, fontWeight: "bold" }}>
               $
               {singleCoinDetails.market_data?.current_price?.usd
@@ -94,18 +123,104 @@ const Coin = ({ route, navigation }) => {
             </Text>
           </View>
 
-          <View>
+          <View
+            style={{
+              marginTop: 5,
+              borderBottomColor: "lightgrey",
+              borderBottomWidth: 1,
+            }}>
+            <Text style={{ textAlign: "center" }}>7 Days Graph</Text>
             {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
           </View>
-          {/* <View style={{ marginVertical: 5 }}>
+
+          <View style={styles.blockMargin}>
             <View style={styles.listItem}>
-              <Text>MarketCap</Text>
-              <Text>
-                ${commaSepertor(singleCoinDetails.market_data?.market_cap?.usd)}
+              <Text style={styles.listItemText}>Market Cap Rank</Text>
+              <Text style={styles.listItemText}>
+                #
+                {singleCoinDetails.market_cap_rank
+                  ? commaSepertor(singleCoinDetails.market_cap_rank)
+                  : ""}
               </Text>
             </View>
-          </View> */}
-          <View>
+
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>Market Cap</Text>
+              <Text style={styles.listItemText}>
+                $
+                {singleCoinDetails.market_data?.market_cap?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.market_cap?.usd.toFixed(2)
+                    )
+                  : ""}
+              </Text>
+            </View>
+
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>Trading Volume</Text>
+              <Text style={styles.listItemText}>
+                $
+                {singleCoinDetails.market_data?.total_volume?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.total_volume?.usd.toFixed(
+                        2
+                      )
+                    )
+                  : ""}
+              </Text>
+            </View>
+
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>24Hr High</Text>
+              <Text style={styles.listItemText}>
+                $
+                {singleCoinDetails.market_data?.high_24h?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.high_24h?.usd.toFixed(2)
+                    )
+                  : ""}
+              </Text>
+            </View>
+
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>24Hr Low</Text>
+              <Text style={styles.listItemText}>
+                $
+                {singleCoinDetails.market_data?.low_24h?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.low_24h?.usd.toFixed(2)
+                    )
+                  : ""}
+              </Text>
+            </View>
+
+            <View style={styles.listItem}>
+              <Text style={styles.listItemText}>Available Supply</Text>
+              <Text style={styles.listItemText}>
+                {singleCoinDetails.market_data?.circulating_supply
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.circulating_supply.toFixed(
+                        2
+                      )
+                    )
+                  : ""}
+              </Text>
+            </View>
+
+            {/* <View style={styles.listItem}>
+              <Text style={styles.listItemText}>All Time High</Text>
+              <Text style={styles.listItemText}>
+                $
+                {singleCoinDetails.market_data?.market_cap?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.market_cap?.usd
+                    )
+                  : ""}
+              </Text>
+            </View> */}
+          </View>
+
+          <View style={styles.blockMargin}>
             {!singleCoinDetails.description?.en ? (
               <Text style={{ fontSize: 20 }}>No Result Found</Text>
             ) : (
@@ -117,8 +232,7 @@ const Coin = ({ route, navigation }) => {
                   style={{
                     fontSize: 16,
                     paddingVertical: 5,
-                  }}
-                >
+                  }}>
                   {singleCoinDetails.description?.en}
                 </Text>
                 <View style={{ flex: 1 }}>
@@ -150,14 +264,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 5,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     backgroundColor: "white",
+  },
+  blockMargin: {
+    marginVertical: 10,
+    paddingHorizontal: 15,
   },
   listItem: {
     flexDirection: "row",
     justifyContent: "space-between",
-
-    paddingVertical: 5,
+    paddingVertical: 15,
+  },
+  listItemText: {
+    fontSize: 16,
+    fontWeight: "normal",
+    marginVertical: 2,
+  },
+  imgDesign: {
+    width: 60,
+    height: 60,
+  },
+  shadow: {
+    shadowColor: "#000",
+    elevation: 5,
+    shadowOffset: {
+      width: 2,
+      height: 5,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 50,
   },
 });
 

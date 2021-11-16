@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
     marginVertical: 5,
   },

@@ -20,11 +20,10 @@ const Item = ({ props, navigation }) => {
       onPress={() => {
         navigation.navigate("Coin", {
           coinID: props.id,
-          coinName: props.symbol.toUpperCase(),
+          coinName: `${props.name} (${props.symbol.toUpperCase()})`,
           coinImg: props.image,
         });
-      }}
-    >
+      }}>
       <View style={styles.wrapper}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <View style={{ flexDirection: "row" }}>
@@ -38,8 +37,7 @@ const Item = ({ props, navigation }) => {
             </View>
             <View style={{ flexDirection: "column" }}>
               <Text
-                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}
-              >
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}>
                 {props.name}
               </Text>
 
@@ -47,8 +45,7 @@ const Item = ({ props, navigation }) => {
                 style={{
                   flexDirection: "row",
                   justifyContent: "flex-start",
-                }}
-              >
+                }}>
                 <Text
                   style={{
                     fontSize: 12,
@@ -57,8 +54,7 @@ const Item = ({ props, navigation }) => {
                     backgroundColor: "#EFF2F5",
                     borderRadius: 50,
                     marginTop: 1,
-                  }}
-                >
+                  }}>
                   {props.market_cap_rank}
                 </Text>
                 <Text style={{ color: "grey" }}>
@@ -70,8 +66,7 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text
-              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}
-            >
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
               ${commaSepertor(Number(props.current_price).toFixed(2))}
             </Text>
 
@@ -109,13 +104,13 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    getCoinList("usd", 2000)
+    getCoinList("usd", 100)
       .then((data) => {
         setLoader(false);
         setData([...data]);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
       });
   }, []);
 
@@ -145,7 +140,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 8,
     padding: 12,
     marginVertical: 5,
   },
