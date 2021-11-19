@@ -129,7 +129,10 @@ const Coin = ({ route, navigation }) => {
               borderBottomColor: "lightgrey",
               borderBottomWidth: 1,
             }}>
-            <Text style={{ textAlign: "center" }}>7 Days Graph</Text>
+            <Text
+              style={{ textAlign: "center", fontSize: 20, marginBottom: 15 }}>
+              7 Days Graph
+            </Text>
             {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
           </View>
 
@@ -220,7 +223,7 @@ const Coin = ({ route, navigation }) => {
             </View> */}
           </View>
 
-          <View style={styles.blockMargin}>
+          {/* <View style={styles.blockMargin}>
             {!singleCoinDetails.description?.en ? (
               <Text style={{ fontSize: 20 }}>No Result Found</Text>
             ) : (
@@ -253,7 +256,7 @@ const Coin = ({ route, navigation }) => {
                 </View>
               </View>
             )}
-          </View>
+          </View> */}
         </ScrollView>
       )}
     </SafeAreaView>

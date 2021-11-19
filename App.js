@@ -1,6 +1,6 @@
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 
 import Home from "./Components/Home";
 import CoinMarketList from "./Components/CoinMarketList";
@@ -195,7 +195,7 @@ function AboutStackScreen() {
 export default function App() {
   return (
     <React.Fragment>
-      <StatusBar style="light" />
+      <StatusBar barStyle="default" backgroundColor="#242424" />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{ headerShown: false }}

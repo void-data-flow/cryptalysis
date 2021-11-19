@@ -7,6 +7,7 @@ import {
   ChartPathProvider,
   ChartXLabel,
   ChartYLabel,
+  useChartData,
   monotoneCubicInterpolation,
 } from "@rainbow-me/animated-charts";
 
@@ -693,10 +694,38 @@ export const data = [
 const Chart = ({ chartArray }) => {
   const points = monotoneCubicInterpolation({ data: chartArray, range: 50 });
 
-  // console.log(typeof ChartXLabel());
+  const output = useChartData();
+
+  console.log(output);
+
+  const getY = (value) => {
+    "worklet";
+    if (value === "") {
+      return "";
+    }
+    return `$ ${value.toLocaleString("en-US", {
+      currency: "USD",
+    })}`;
+  };
+
+  const getX = (value) => {
+    "worklet";
+    // console.log(runOnJS(useChartData("state")));
+    if (value === "") {
+      return "";
+    }
+    const date = new Date(Number(value * 1000));
+    const s = date.getSeconds();
+    const m = date.getMinutes();
+    const h = date.getHours();
+    const d = date.getDate();
+    const n = date.getMonth();
+    const y = date.getFullYear();
+    return `${y}-${n}-${d} ${h}:${m}:${s}`;
+  };
 
   return (
-    <View style={{ marginHorizontal: 0 }}>
+    <View style={{ marginHorizontal: 10 }}>
       <ChartPathProvider
         data={{
           points: points,
@@ -706,15 +735,12 @@ const Chart = ({ chartArray }) => {
         <ChartPath
           height={width / 2}
           stroke="#242424"
-          width={width}
+          width={width / 1.05}
           strokeWidth={2}
           selectedStrokeWidth={2}
           hitSlop={20}
         />
-        <ChartDot
-          style={[{ backgroundColor: "black" }, styles.shadow]}
-          size={14}
-        />
+        <ChartDot style={styles.shadow} size={12} />
 
         <View style={styles.textDataStyle}>
           <Text>Time</Text>
@@ -722,8 +748,8 @@ const Chart = ({ chartArray }) => {
         </View>
 
         <View style={styles.textDataStyle}>
-          <ChartXLabel style={{ color: "#242424" }} />
-          <ChartYLabel style={{ color: "#242424" }} />
+          <ChartXLabel format={getX} style={{ color: "#242424" }} />
+          <ChartYLabel format={getY} style={{ color: "#242424" }} />
         </View>
       </ChartPathProvider>
     </View>
@@ -732,6 +758,7 @@ const Chart = ({ chartArray }) => {
 
 const styles = StyleSheet.create({
   shadow: {
+    backgroundColor: "black",
     shadowColor: "#242424",
     shadowOpacity: 0.5,
     elevation: 5,
