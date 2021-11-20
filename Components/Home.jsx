@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   staticText: {
-    fontSize: 18,
+    fontSize: 16,
   },
 });
 

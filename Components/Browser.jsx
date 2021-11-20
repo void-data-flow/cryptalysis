@@ -1,7 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { WebView } from "react-native-webview";
-import Loader from "./Widgets/Loader";
 
 const Browser = ({ navigation, route }) => {
   // console.log(route);
@@ -13,9 +12,7 @@ const Browser = ({ navigation, route }) => {
           source={{
             uri: route.params.url,
           }}
-          // style={{ flex: 1 }}
         />
-        {/* <Text>{route.params.url}</Text> */}
       </View>
     </React.Fragment>
   );

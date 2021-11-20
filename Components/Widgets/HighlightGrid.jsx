@@ -78,18 +78,18 @@ const HighlightGrid = () => {
               text="Total Market Cap"
               subText={
                 globalObj.total_market_cap?.usd
-                  ? `$${commaSepertor(
+                  ? `$ ${commaSepertor(
                       globalObj.total_market_cap?.usd.toFixed(2)
                     )}`
-                  : ""
+                  : "Not Available"
               }
             />
             <SimpleCard
               text="24H Volume"
               subText={
                 globalObj.total_volume?.usd
-                  ? `$${commaSepertor(globalObj.total_volume?.usd.toFixed(2))}`
-                  : ""
+                  ? `$ ${commaSepertor(globalObj.total_volume?.usd.toFixed(2))}`
+                  : "Not Available"
               }
             />
           </View>
