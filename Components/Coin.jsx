@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   useWindowDimensions,
+  TouchableOpacity,
 } from "react-native";
 import { getSingleCoinInfo } from "../api/axios";
 import { getMarketData } from "../api/cryptoService";
@@ -16,6 +17,16 @@ import Loader from "./Widgets/Loader";
 
 import Chart from "./Widgets/Chart";
 import RenderHTML from "react-native-render-html";
+
+const FlatButton = ({ text, onPress }) => {
+  return (
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <View style={styles.flatButtonStyle}>
+        <Text style={styles.flatButtonStyleText}>{text}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const Coin = ({ route, navigation }) => {
   const { width } = useWindowDimensions();
@@ -67,28 +78,122 @@ const Coin = ({ route, navigation }) => {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={styles.container}>
-          <View style={[{ flexDirection: "row" }, styles.blockMargin]}>
-            <View style={styles.shadow}>
+          <View style={styles.blockGrid}>
+            <View
+              style={[
+                { flexDirection: "row", justifyContent: "space-between" },
+                styles.blockMargin,
+              ]}>
               <Image
                 style={styles.imgDesign}
                 source={{
                   uri: singleCoinDetails.image?.large,
                 }}
               />
-            </View>
-            <View style={{ marginStart: 10 }}>
-              <Text style={styles.listItemText}>
-                {singleCoinDetails?.name} (
-                {singleCoinDetails?.symbol
-                  ? singleCoinDetails?.symbol.toUpperCase()
-                  : ""}
-                )
-              </Text>
 
+              <View>
+                <Text style={styles.listItemText}>
+                  {singleCoinDetails?.name} (
+                  {singleCoinDetails?.symbol
+                    ? singleCoinDetails?.symbol.toUpperCase()
+                    : ""}
+                  )
+                </Text>
+
+                {Number(
+                  singleCoinDetails?.market_data?.price_change_percentage_24h
+                ) > 0 ? (
+                  <Text
+                    style={[
+                      styles.listItemText,
+                      { color: "green", textAlign: "right" },
+                    ]}>
+                    +
+                    {commaSepertor(
+                      Number(
+                        singleCoinDetails?.market_data
+                          ?.price_change_percentage_24h
+                      ).toFixed(3)
+                    )}
+                    %
+                  </Text>
+                ) : (
+                  <Text
+                    style={[
+                      styles.listItemText,
+                      { color: "red", textAlign: "right" },
+                    ]}>
+                    {commaSepertor(
+                      Number(
+                        singleCoinDetails?.market_data
+                          ?.price_change_percentage_24h
+                      ).toFixed(3)
+                    )}
+                    %
+                  </Text>
+                )}
+              </View>
+            </View>
+            <View style={styles.blockMargin}>
+              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+                $
+                {singleCoinDetails.market_data?.current_price?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.current_price?.usd.toFixed(
+                        3
+                      )
+                    )
+                  : ""}
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              marginTop: 5,
+              borderBottomColor: "lightgrey",
+              borderBottomWidth: 1,
+            }}>
+            {/* <Text
+              style={{ textAlign: "center", fontSize: 20, marginBottom: 15 }}>
+              7 Days Graph
+            </Text> */}
+            {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
+          </View>
+
+          <View style={styles.flatBox}>
+            <FlatButton
+              onPress={() => {
+                navigation.navigate("Browser", {
+                  exchangeName: singleCoinDetails?.name,
+                  url: singleCoinDetails?.links?.homepage[0],
+                });
+              }}
+              text={`Get ${singleCoinDetails?.name}`}
+            />
+          </View>
+
+          <View style={styles.blockGrid}>
+            <View style={styles.listItem}>
+              <Text>24H</Text>
+              <Text>7D</Text>
+              <Text>30D</Text>
+              <Text>60D</Text>
+              <Text>1Y</Text>
+            </View>
+
+            <View style={styles.lineBtwSection} />
+
+            <View style={styles.listItem}>
+              {/* Percent change 24H */}
               {Number(
                 singleCoinDetails?.market_data?.price_change_percentage_24h
               ) > 0 ? (
-                <Text style={[{ color: "green" }, styles.listItemText]}>
+                <Text
+                  style={[
+                    styles.listItemText,
+                    { color: "green", fontSize: 12 },
+                  ]}>
                   +
                   {commaSepertor(
                     Number(
@@ -99,7 +204,8 @@ const Coin = ({ route, navigation }) => {
                   %
                 </Text>
               ) : (
-                <Text style={[{ color: "red" }, styles.listItemText]}>
+                <Text
+                  style={[styles.listItemText, { color: "red", fontSize: 12 }]}>
                   {commaSepertor(
                     Number(
                       singleCoinDetails?.market_data
@@ -109,58 +215,164 @@ const Coin = ({ route, navigation }) => {
                   %
                 </Text>
               )}
+
+              {/* Percent change 7D */}
+              {Number(
+                singleCoinDetails?.market_data?.price_change_percentage_7d
+              ) > 0 ? (
+                <Text
+                  style={[
+                    styles.listItemText,
+                    { color: "green", fontSize: 12 },
+                  ]}>
+                  +
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data?.price_change_percentage_7d
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              ) : (
+                <Text
+                  style={[styles.listItemText, { color: "red", fontSize: 12 }]}>
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data?.price_change_percentage_7d
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              )}
+
+              {/* Percent change 30D */}
+              {Number(
+                singleCoinDetails?.market_data?.price_change_percentage_30d
+              ) > 0 ? (
+                <Text
+                  style={[
+                    styles.listItemText,
+                    { color: "green", fontSize: 12 },
+                  ]}>
+                  +
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_30d
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              ) : (
+                <Text
+                  style={[styles.listItemText, { color: "red", fontSize: 12 }]}>
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_30d
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              )}
+
+              {/* Percent change 60D */}
+              {Number(
+                singleCoinDetails?.market_data?.price_change_percentage_60d
+              ) > 0 ? (
+                <Text
+                  style={[
+                    styles.listItemText,
+                    { color: "green", fontSize: 12 },
+                  ]}>
+                  +
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_60d
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              ) : (
+                <Text
+                  style={[styles.listItemText, { color: "red", fontSize: 12 }]}>
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_60d
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              )}
+
+              {/* Percent change 1Y */}
+              {Number(
+                singleCoinDetails?.market_data?.price_change_percentage_1y
+              ) > 0 ? (
+                <Text
+                  style={[
+                    styles.listItemText,
+                    { color: "green", fontSize: 12 },
+                  ]}>
+                  +
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data?.price_change_percentage_1y
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              ) : (
+                <Text
+                  style={[styles.listItemText, { color: "red", fontSize: 12 }]}>
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data?.price_change_percentage_1y
+                    ).toFixed(2)
+                  )}
+                  %
+                </Text>
+              )}
             </View>
           </View>
 
-          <View style={styles.blockMargin}>
-            <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-              $
-              {singleCoinDetails.market_data?.current_price?.usd
-                ? commaSepertor(
-                    singleCoinDetails.market_data?.current_price?.usd.toFixed(3)
-                  )
-                : ""}
-            </Text>
-          </View>
-
-          <View
-            style={{
-              marginTop: 5,
-              borderBottomColor: "lightgrey",
-              borderBottomWidth: 1,
-            }}>
-            <Text
-              style={{ textAlign: "center", fontSize: 20, marginBottom: 15 }}>
-              7 Days Graph
-            </Text>
-            {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
-          </View>
-
-          <View style={styles.blockMargin}>
+          <View style={styles.blockGrid}>
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>Market Cap Rank</Text>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                Market Cap Rank
+              </Text>
               <Text style={styles.listItemText}>
                 #
                 {singleCoinDetails.market_cap_rank
                   ? commaSepertor(singleCoinDetails.market_cap_rank)
-                  : ""}
+                  : "0"}
               </Text>
             </View>
 
+            <View style={styles.lineBtwSection}></View>
+
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>Market Cap</Text>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                Total Market Cap
+              </Text>
               <Text style={styles.listItemText}>
                 $
                 {singleCoinDetails.market_data?.market_cap?.usd
                   ? commaSepertor(
                       singleCoinDetails.market_data?.market_cap?.usd.toFixed(2)
                     )
-                  : ""}
+                  : "None"}
               </Text>
             </View>
 
+            <View style={styles.lineBtwSection}></View>
+
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>Trading Volume</Text>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                Trading Volume
+              </Text>
               <Text style={styles.listItemText}>
                 $
                 {singleCoinDetails.market_data?.total_volume?.usd
@@ -169,36 +381,63 @@ const Coin = ({ route, navigation }) => {
                         2
                       )
                     )
-                  : ""}
+                  : "None"}
               </Text>
             </View>
 
+            <View style={styles.lineBtwSection}></View>
+
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>24Hr High</Text>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                24Hr High
+              </Text>
               <Text style={styles.listItemText}>
                 $
                 {singleCoinDetails.market_data?.high_24h?.usd
                   ? commaSepertor(
                       singleCoinDetails.market_data?.high_24h?.usd.toFixed(2)
                     )
-                  : ""}
+                  : "None"}
               </Text>
             </View>
 
+            <View style={styles.lineBtwSection}></View>
+
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>24Hr Low</Text>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                24Hr Low
+              </Text>
               <Text style={styles.listItemText}>
                 $
                 {singleCoinDetails.market_data?.low_24h?.usd
                   ? commaSepertor(
                       singleCoinDetails.market_data?.low_24h?.usd.toFixed(2)
                     )
-                  : ""}
+                  : "None"}
               </Text>
             </View>
 
+            <View style={styles.lineBtwSection}></View>
+
             <View style={styles.listItem}>
-              <Text style={styles.listItemText}>Available Supply</Text>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                Total Supply
+              </Text>
+              <Text style={styles.listItemText}>
+                {singleCoinDetails.market_data?.total_supply
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.total_supply.toFixed(2)
+                    )
+                  : "None"}
+              </Text>
+            </View>
+
+            <View style={styles.lineBtwSection}></View>
+
+            <View style={styles.listItem}>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                Available Supply
+              </Text>
               <Text style={styles.listItemText}>
                 {singleCoinDetails.market_data?.circulating_supply
                   ? commaSepertor(
@@ -206,21 +445,9 @@ const Coin = ({ route, navigation }) => {
                         2
                       )
                     )
-                  : ""}
+                  : "None"}
               </Text>
             </View>
-
-            {/* <View style={styles.listItem}>
-              <Text style={styles.listItemText}>All Time High</Text>
-              <Text style={styles.listItemText}>
-                $
-                {singleCoinDetails.market_data?.market_cap?.usd
-                  ? commaSepertor(
-                      singleCoinDetails.market_data?.market_cap?.usd
-                    )
-                  : ""}
-              </Text>
-            </View> */}
           </View>
 
           {/* <View style={styles.blockMargin}>
@@ -267,12 +494,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 5,
-    // paddingHorizontal: 10,
-    backgroundColor: "white",
   },
   blockMargin: {
     marginVertical: 10,
-    paddingHorizontal: 15,
+    paddingHorizontal: 5,
+  },
+  blockGrid: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+
+    marginHorizontal: 15,
+    marginVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: "white",
+    borderRadius: 10,
   },
   listItem: {
     flexDirection: "row",
@@ -280,23 +521,35 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   listItemText: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "normal",
     marginVertical: 2,
   },
   imgDesign: {
-    width: 60,
-    height: 60,
+    width: 55,
+    height: 55,
   },
-  shadow: {
-    shadowColor: "#000",
-    elevation: 5,
-    shadowOffset: {
-      width: 2,
-      height: 5,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 50,
+  lineBtwSection: {
+    borderBottomWidth: 1,
+    borderColor: "lightgrey",
+    borderRadius: 20,
+  },
+  flatButtonStyle: {
+    borderRadius: 10,
+    paddingVertical: 15,
+    backgroundColor: "#242424",
+    textAlign: "center",
+  },
+  flatButtonStyleText: {
+    color: "white",
+    textTransform: "uppercase",
+    letterSpacing: 1.2,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  flatBox: {
+    marginHorizontal: 15,
+    marginVertical: 20,
   },
 });
 

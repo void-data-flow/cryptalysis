@@ -696,23 +696,20 @@ const Chart = ({ chartArray }) => {
 
   const output = useChartData();
 
-  console.log(output);
+  // console.log(output);
 
   const getY = (value) => {
     "worklet";
     if (value === "") {
-      return "";
+      return "---";
     }
-    return `$ ${value.toLocaleString("en-US", {
-      currency: "USD",
-    })}`;
+    return `$ ${Number(value).toFixed(2)}`;
   };
 
   const getX = (value) => {
     "worklet";
-    // console.log(runOnJS(useChartData("state")));
     if (value === "") {
-      return "";
+      return "---";
     }
     const date = new Date(Number(value * 1000));
     const s = date.getSeconds();
@@ -721,7 +718,7 @@ const Chart = ({ chartArray }) => {
     const d = date.getDate();
     const n = date.getMonth();
     const y = date.getFullYear();
-    return `${y}-${n}-${d} ${h}:${m}:${s}`;
+    return `${y}/${n}/${d} ${h}:${m}:${s}`;
   };
 
   return (
@@ -743,13 +740,19 @@ const Chart = ({ chartArray }) => {
         <ChartDot style={styles.shadow} size={12} />
 
         <View style={styles.textDataStyle}>
-          <Text>Time</Text>
-          <Text>Price</Text>
+          <Text style={{ fontWeight: "bold" }}>Time</Text>
+          <Text style={{ fontWeight: "bold" }}>Price</Text>
         </View>
 
         <View style={styles.textDataStyle}>
-          <ChartXLabel format={getX} style={{ color: "#242424" }} />
-          <ChartYLabel format={getY} style={{ color: "#242424" }} />
+          <ChartXLabel
+            format={getX}
+            style={{ color: "#242424", fontSize: 16 }}
+          />
+          <ChartYLabel
+            format={getY}
+            style={{ color: "#242424", fontSize: 16 }}
+          />
         </View>
       </ChartPathProvider>
     </View>

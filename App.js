@@ -195,7 +195,7 @@ function AboutStackScreen() {
 export default function App() {
   return (
     <React.Fragment>
-      <StatusBar barStyle="default" backgroundColor="#242424" />
+      <StatusBar barStyle="light-content" backgroundColor="#242424" />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={{ headerShown: false }}
