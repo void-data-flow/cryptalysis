@@ -108,7 +108,7 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    getExchangeList(100)
+    getExchangeList(200)
       .then((data) => {
         setLoader(false);
         setData([...data]);
@@ -130,6 +130,7 @@ const CryptoList = ({ navigation, route }) => {
           )}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
+          ListFooterComponent={Loader}
         />
       )}
     </SafeAreaView>
