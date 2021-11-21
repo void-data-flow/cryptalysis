@@ -104,7 +104,7 @@ const CryptoList = ({ navigation, route }) => {
   const [loader, setLoader] = useState(true);
 
   useEffect(() => {
-    getCoinList("usd", 100)
+    getCoinList("usd", 200)
       .then((data) => {
         setLoader(false);
         setData([...data]);
@@ -126,6 +126,7 @@ const CryptoList = ({ navigation, route }) => {
           )}
           keyExtractor={(item) => item.id}
           showsVerticalScrollIndicator={false}
+          ListFooterComponent={Loader}
         />
       )}
     </SafeAreaView>
