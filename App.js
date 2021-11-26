@@ -201,7 +201,7 @@ export default function App() {
           screenOptions={{ headerShown: false }}
           initialRouteName="Home"
           activeColor="#f0edf6"
-          inactiveColor="lightgrey"
+          inactiveColor="grey"
           labeled={false}
           barStyle={{ backgroundColor: "#242424", paddingVertical: 2 }}>
           <Tab.Screen

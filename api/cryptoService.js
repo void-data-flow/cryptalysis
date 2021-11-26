@@ -1,17 +1,14 @@
-import axios from "axios";
 import moment from "moment";
 
-// const formatSparkline = (numbers) => {
-//   const sevenDaysAgo = moment().subtract(7, "days").unix();
-//   let formattedSparkline = numbers.map((item, index) => {
-//     return {
-//       x: sevenDaysAgo + (index + 1) * 3600,
-//       y: item,
-//     };
-//   });
+function arrayToObject(sampleArray) {
+  const sevenDaysAgo = moment().subtract(7, "days").unix();
+  const objData = sampleArray.map((y, index) => ({
+    x: sevenDaysAgo + (index + 1) * 3600,
+    y,
+  }));
 
-//   return formattedSparkline;
-// };
+  return objData;
+}
 
 const formatMarketData = (data) => {
   const priceArray = data.market_data?.sparkline_7d?.price;
@@ -29,7 +26,7 @@ const formatMarketData = (data) => {
 
 export const getMarketData = async (randData) => {
   try {
-    const formattedResponse = formatMarketData(randData);
+    const formattedResponse = arrayToObject(randData);
     return formattedResponse;
   } catch (error) {
     console.log(error.message);
