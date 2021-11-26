@@ -26,7 +26,7 @@ const formatMarketData = (data) => {
 
 export const getMarketData = async (randData) => {
   try {
-    const formattedResponse = formatMarketData(randData);
+    const formattedResponse = arrayToObject(randData);
     return formattedResponse;
   } catch (error) {
     console.log(error.message);

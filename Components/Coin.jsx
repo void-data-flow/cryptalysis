@@ -45,7 +45,9 @@ const Coin = ({ route, navigation }) => {
 
         setSingleCoinDetails(resp);
 
-        const correctValues = getMarketData(resp);
+        const correctValues = getMarketData(
+          resp.market_data?.sparkline_7d?.price
+        );
 
         correctValues
           .then((successData) => {
@@ -55,8 +57,6 @@ const Coin = ({ route, navigation }) => {
       })
       .catch((err) => console.log(err));
   }, [coinIDLowerCase]);
-
-  // console.log(justForChart);
 
   const HTML = `<!DOCTYPE html>
   <html lang="en">
@@ -358,7 +358,7 @@ const Coin = ({ route, navigation }) => {
                 Total Market Cap
               </Text>
               <Text style={styles.listItemText}>
-                $
+                ${" "}
                 {singleCoinDetails.market_data?.market_cap?.usd
                   ? commaSepertor(
                       singleCoinDetails.market_data?.market_cap?.usd.toFixed(2)
@@ -374,7 +374,7 @@ const Coin = ({ route, navigation }) => {
                 Trading Volume
               </Text>
               <Text style={styles.listItemText}>
-                $
+                ${" "}
                 {singleCoinDetails.market_data?.total_volume?.usd
                   ? commaSepertor(
                       singleCoinDetails.market_data?.total_volume?.usd.toFixed(
@@ -444,6 +444,38 @@ const Coin = ({ route, navigation }) => {
                       singleCoinDetails.market_data?.circulating_supply.toFixed(
                         2
                       )
+                    )
+                  : "None"}
+              </Text>
+            </View>
+
+            <View style={styles.lineBtwSection}></View>
+
+            <View style={styles.listItem}>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                All Time High
+              </Text>
+              <Text style={styles.listItemText}>
+                ${" "}
+                {singleCoinDetails.market_data?.ath?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.ath?.usd.toFixed(2)
+                    )
+                  : "None"}
+              </Text>
+            </View>
+
+            <View style={styles.lineBtwSection}></View>
+
+            <View style={styles.listItem}>
+              <Text style={[styles.listItemText, { color: "grey" }]}>
+                All Time Low
+              </Text>
+              <Text style={styles.listItemText}>
+                ${" "}
+                {singleCoinDetails.market_data?.atl?.usd
+                  ? commaSepertor(
+                      singleCoinDetails.market_data?.atl?.usd.toFixed(2)
                     )
                   : "None"}
               </Text>

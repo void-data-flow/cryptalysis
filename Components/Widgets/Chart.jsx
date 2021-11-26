@@ -10,15 +10,12 @@ import {
   useChartData,
   monotoneCubicInterpolation,
 } from "@rainbow-me/animated-charts";
-
 export const { width } = Dimensions.get("window");
 
 const Chart = ({ chartArray }) => {
   const points = monotoneCubicInterpolation({ data: chartArray, range: 50 });
 
   const output = useChartData();
-
-  // console.log(output);
 
   const getY = (value) => {
     "worklet";
