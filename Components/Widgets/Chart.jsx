@@ -13,7 +13,7 @@ import {
 export const { width } = Dimensions.get("window");
 
 const Chart = ({ chartArray }) => {
-  const points = monotoneCubicInterpolation({ data: chartArray, range: 50 });
+  const points = monotoneCubicInterpolation({ data: chartArray, range: 30 });
 
   const output = useChartData();
 
@@ -31,13 +31,16 @@ const Chart = ({ chartArray }) => {
       return "---";
     }
     const date = new Date(Number(value * 1000));
-    const s = date.getSeconds();
-    const m = date.getMinutes();
-    const h = date.getHours();
-    const d = date.getDate();
-    const n = date.getMonth();
-    const y = date.getFullYear();
-    return `${y}/${n}/${d} ${h}:${m}:${s}`;
+    // const s = date.getSeconds();
+    // const m = date.getMinutes();
+    // const h = date.getHours();
+    // const d = date.getDate();
+    // const n = date.getMonth();
+    // const y = date.getFullYear();
+    // return `${y}/${n}/${d} ${h}:${m}:${s}`;
+    const dateFormat = date.toUTCString();
+    // console.log(dateFormat);
+    return dateFormat;
   };
 
   return (
@@ -66,11 +69,11 @@ const Chart = ({ chartArray }) => {
         <View style={styles.textDataStyle}>
           <ChartXLabel
             format={getX}
-            style={{ color: "#242424", fontSize: 16 }}
+            style={{ color: "#242424", fontSize: 15 }}
           />
           <ChartYLabel
             format={getY}
-            style={{ color: "#242424", fontSize: 16 }}
+            style={{ color: "#242424", fontSize: 15 }}
           />
         </View>
       </ChartPathProvider>
