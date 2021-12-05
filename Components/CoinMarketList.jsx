@@ -67,7 +67,7 @@ const Item = ({ props, navigation }) => {
           <View>
             <Text
               style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
-              ${commaSepertor(Number(props.current_price).toFixed(2))}
+              $ {commaSepertor(Number(props.current_price).toFixed(2))}
             </Text>
 
             <Text style={{ textAlign: "right" }}>
