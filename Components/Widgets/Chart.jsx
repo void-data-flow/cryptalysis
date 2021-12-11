@@ -13,7 +13,7 @@ import {
 export const { width } = Dimensions.get("window");
 
 const Chart = ({ chartArray }) => {
-  const points = monotoneCubicInterpolation({ data: chartArray, range: 30 });
+  const points = monotoneCubicInterpolation({ data: chartArray, range: 50 });
 
   const output = useChartData();
 
