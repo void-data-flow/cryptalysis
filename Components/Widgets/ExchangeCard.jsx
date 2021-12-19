@@ -58,7 +58,7 @@ const ExchangeCard = ({ navigation, route }) => {
               <View style={styles.flexProp}>
                 <View>
                   <Image
-                    style={{ width: 55, height: 55 }}
+                    style={{ width: 45, height: 45 }}
                     source={{
                       uri: props.image,
                     }}
@@ -98,18 +98,17 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   flexProp: {
-    display: "flex",
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
   },
   trustIcon: {
     color: "green",
     fontSize: 16,
-    marginVertical: 5,
+    marginBottom: 5,
   },
   text: {
     fontSize: 14,
-    marginVertical: 2,
   },
 });
 
