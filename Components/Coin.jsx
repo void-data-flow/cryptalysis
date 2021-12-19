@@ -69,7 +69,7 @@ const Coin = ({ route, navigation }) => {
           <View style={styles.blockGrid}>
             <View
               style={[
-                { flexDirection: "row", justifyContent: "space-between" },
+                { flexDirection: "row", alignItems: "center" },
                 styles.blockMargin,
               ]}>
               <Image
@@ -80,60 +80,66 @@ const Coin = ({ route, navigation }) => {
               />
 
               <View>
-                <Text style={styles.listItemText}>
+                <Text style={{ fontSize: 18 }}>
                   {singleCoinDetails?.name} (
                   {singleCoinDetails?.symbol
                     ? singleCoinDetails?.symbol.toUpperCase()
                     : ""}
                   )
                 </Text>
+
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "flex-end",
+                    marginVertical: 5,
+                  }}>
+                  <Text
+                    style={{ fontSize: 18, fontWeight: "bold", marginEnd: 5 }}>
+                    $
+                    {singleCoinDetails.market_data?.current_price?.usd
+                      ? commaSepertor(
+                          singleCoinDetails.market_data?.current_price?.usd.toFixed(
+                            3
+                          )
+                        )
+                      : ""}
+                  </Text>
+                  {Number(
+                    singleCoinDetails?.market_data?.price_change_percentage_24h
+                  ) > 0 ? (
+                    <Text
+                      style={[
+                        styles.listItemText,
+                        { color: "#1DCD92", fontSize: 16 },
+                      ]}>
+                      <Octicons name="triangle-up" size={16} color="#1DCD92" />
+                      {commaSepertor(
+                        Number(
+                          singleCoinDetails?.market_data
+                            ?.price_change_percentage_24h
+                        ).toFixed(3)
+                      )}
+                      %
+                    </Text>
+                  ) : (
+                    <Text
+                      style={[
+                        styles.listItemText,
+                        { color: "red", fontSize: 16 },
+                      ]}>
+                      <Octicons name="triangle-down" size={16} color="red" />
+                      {commaSepertor(
+                        Number(
+                          singleCoinDetails?.market_data
+                            ?.price_change_percentage_24h
+                        ).toFixed(3)
+                      )}
+                      %
+                    </Text>
+                  )}
+                </View>
               </View>
-            </View>
-            <View
-              style={[
-                styles.blockMargin,
-                { flexDirection: "row", alignItems: "flex-end" },
-              ]}>
-              <Text style={{ fontSize: 24, fontWeight: "bold", marginEnd: 5 }}>
-                $
-                {singleCoinDetails.market_data?.current_price?.usd
-                  ? commaSepertor(
-                      singleCoinDetails.market_data?.current_price?.usd.toFixed(
-                        3
-                      )
-                    )
-                  : ""}
-              </Text>
-              {Number(
-                singleCoinDetails?.market_data?.price_change_percentage_24h
-              ) > 0 ? (
-                <Text
-                  style={[
-                    styles.listItemText,
-                    { color: "#1DCD92", fontSize: 18 },
-                  ]}>
-                  <Octicons name="triangle-up" size={20} color="#1DCD92" />
-                  {commaSepertor(
-                    Number(
-                      singleCoinDetails?.market_data
-                        ?.price_change_percentage_24h
-                    ).toFixed(3)
-                  )}
-                  %
-                </Text>
-              ) : (
-                <Text
-                  style={[styles.listItemText, { color: "red", fontSize: 18 }]}>
-                  <Octicons name="triangle-down" size={20} color="red" />
-                  {commaSepertor(
-                    Number(
-                      singleCoinDetails?.market_data
-                        ?.price_change_percentage_24h
-                    ).toFixed(3)
-                  )}
-                  %
-                </Text>
-              )}
             </View>
           </View>
 
@@ -143,10 +149,6 @@ const Coin = ({ route, navigation }) => {
               borderBottomColor: "lightgrey",
               borderBottomWidth: 1,
             }}>
-            {/* <Text
-              style={{ textAlign: "center", fontSize: 20, marginBottom: 15 }}>
-              7 Days Graph
-            </Text> */}
             {justForChart ? <Chart chartArray={justForChart} /> : <Loader />}
           </View>
 
@@ -509,11 +511,11 @@ const styles = StyleSheet.create({
   listItemText: {
     fontSize: 14,
     fontWeight: "normal",
-    marginVertical: 2,
   },
   imgDesign: {
-    width: 55,
-    height: 55,
+    width: 60,
+    height: 60,
+    marginRight: 15,
   },
   lineBtwSection: {
     borderBottomWidth: 1,
