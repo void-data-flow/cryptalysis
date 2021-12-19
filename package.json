@@ -19,7 +19,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
-    "react-native-dotenv": "^3.2.0",
+    "react-native-dotenv": "^3.3.1",
     "react-native-paper": "^4.9.2",
     "react-native-render-html": "^6.3.0",
     "react-native-web": "^0.17.5",
@@ -27,10 +27,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@xmldom/xmldom": ">=0.7.0",
     "node-fetch": ">=2.6.1",
-    "set-value": ">=4.0.1",
     "nth-check": ">=2.0.1",
-    "@xmldom/xmldom": ">=0.7.0"
+    "set-value": ">=4.0.1"
   },
   "private": true
 }

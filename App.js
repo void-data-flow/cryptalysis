@@ -203,7 +203,7 @@ export default function App() {
           activeColor="#f0edf6"
           inactiveColor="grey"
           labeled={false}
-          barStyle={{ backgroundColor: "#242424", paddingVertical: 2 }}>
+          barStyle={{ backgroundColor: "#242424" }}>
           <Tab.Screen
             name="Home Stack"
             component={HomeStackScreen}

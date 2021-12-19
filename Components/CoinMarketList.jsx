@@ -37,7 +37,7 @@ const Item = ({ props, navigation }) => {
             </View>
             <View style={{ flexDirection: "column" }}>
               <Text
-                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}>
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 14 }}>
                 {props.name}
               </Text>
 
@@ -57,7 +57,7 @@ const Item = ({ props, navigation }) => {
                   }}>
                   {props.market_cap_rank}
                 </Text>
-                <Text style={{ color: "grey" }}>
+                <Text style={{ color: "grey", fontSize: 14 }}>
                   ({props.symbol.toUpperCase()})
                 </Text>
               </View>
@@ -66,13 +66,13 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text
-              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 14 }}>
               $ {commaSepertor(Number(props.current_price).toFixed(2))}
             </Text>
 
             <Text style={{ textAlign: "right" }}>
               {Number(props.price_change_percentage_24h) > 0 ? (
-                <Text style={{ color: "green" }}>
+                <Text style={{ color: "#1DCD92" }}>
                   +
                   {commaSepertor(
                     Number(props.price_change_percentage_24h).toFixed(2)
@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     borderRadius: 8,
-    padding: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     marginVertical: 5,
   },
 });

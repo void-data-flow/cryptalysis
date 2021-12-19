@@ -55,7 +55,7 @@ const CoinCard = ({ navigation, route }) => {
             <View style={styles.view}>
               <View>
                 <Image
-                  style={{ width: 55, height: 55 }}
+                  style={{ width: 50, height: 50 }}
                   source={{
                     uri: props.image,
                   }}
@@ -79,7 +79,7 @@ const CoinCard = ({ navigation, route }) => {
 
                 <Text>
                   {Number(props.price_change_percentage_24h) > 0 ? (
-                    <Text style={{ color: "green" }}>
+                    <Text style={{ color: "#1DCD92" }}>
                       +
                       {commaSepertor(
                         Number(props.price_change_percentage_24h).toFixed(2)

@@ -58,7 +58,7 @@ const About = () => {
 
         <View style={styles.viewBlock}>
           <Text style={styles.heading}>Version</Text>
-          <Text style={styles.para}>v1.9.0</Text>
+          <Text style={styles.para}>v1.9.5</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

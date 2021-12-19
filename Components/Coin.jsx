@@ -14,9 +14,9 @@ import { getMarketData } from "../api/cryptoService";
 
 import { commaSepertor } from "./Widgets/comma";
 import Loader from "./Widgets/Loader";
-
 import Chart from "./Widgets/Chart";
-import RenderHTML from "react-native-render-html";
+
+import { Octicons } from "@expo/vector-icons";
 
 const FlatButton = ({ text, onPress }) => {
   return (
@@ -58,18 +58,6 @@ const Coin = ({ route, navigation }) => {
       .catch((err) => console.log(err));
   }, [coinIDLowerCase]);
 
-  const HTML = `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <div style="font-size: 16px; padding: 5px 0;">${singleCoinDetails.description?.en}</div>
-  </body>
-  </html>`;
-
   return (
     <SafeAreaView style={styles.container}>
       {loader ? (
@@ -99,43 +87,14 @@ const Coin = ({ route, navigation }) => {
                     : ""}
                   )
                 </Text>
-
-                {Number(
-                  singleCoinDetails?.market_data?.price_change_percentage_24h
-                ) > 0 ? (
-                  <Text
-                    style={[
-                      styles.listItemText,
-                      { color: "green", textAlign: "right" },
-                    ]}>
-                    +
-                    {commaSepertor(
-                      Number(
-                        singleCoinDetails?.market_data
-                          ?.price_change_percentage_24h
-                      ).toFixed(3)
-                    )}
-                    %
-                  </Text>
-                ) : (
-                  <Text
-                    style={[
-                      styles.listItemText,
-                      { color: "red", textAlign: "right" },
-                    ]}>
-                    {commaSepertor(
-                      Number(
-                        singleCoinDetails?.market_data
-                          ?.price_change_percentage_24h
-                      ).toFixed(3)
-                    )}
-                    %
-                  </Text>
-                )}
               </View>
             </View>
-            <View style={styles.blockMargin}>
-              <Text style={{ fontSize: 30, fontWeight: "bold" }}>
+            <View
+              style={[
+                styles.blockMargin,
+                { flexDirection: "row", alignItems: "flex-end" },
+              ]}>
+              <Text style={{ fontSize: 24, fontWeight: "bold", marginEnd: 5 }}>
                 $
                 {singleCoinDetails.market_data?.current_price?.usd
                   ? commaSepertor(
@@ -145,6 +104,36 @@ const Coin = ({ route, navigation }) => {
                     )
                   : ""}
               </Text>
+              {Number(
+                singleCoinDetails?.market_data?.price_change_percentage_24h
+              ) > 0 ? (
+                <Text
+                  style={[
+                    styles.listItemText,
+                    { color: "#1DCD92", fontSize: 18 },
+                  ]}>
+                  <Octicons name="triangle-up" size={20} color="#1DCD92" />
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_24h
+                    ).toFixed(3)
+                  )}
+                  %
+                </Text>
+              ) : (
+                <Text
+                  style={[styles.listItemText, { color: "red", fontSize: 18 }]}>
+                  <Octicons name="triangle-down" size={20} color="red" />
+                  {commaSepertor(
+                    Number(
+                      singleCoinDetails?.market_data
+                        ?.price_change_percentage_24h
+                    ).toFixed(3)
+                  )}
+                  %
+                </Text>
+              )}
             </View>
           </View>
 
@@ -192,7 +181,7 @@ const Coin = ({ route, navigation }) => {
                 <Text
                   style={[
                     styles.listItemText,
-                    { color: "green", fontSize: 12 },
+                    { color: "#1DCD92", fontSize: 12 },
                   ]}>
                   +
                   {commaSepertor(
@@ -223,7 +212,7 @@ const Coin = ({ route, navigation }) => {
                 <Text
                   style={[
                     styles.listItemText,
-                    { color: "green", fontSize: 12 },
+                    { color: "#1DCD92", fontSize: 12 },
                   ]}>
                   +
                   {commaSepertor(
@@ -252,7 +241,7 @@ const Coin = ({ route, navigation }) => {
                 <Text
                   style={[
                     styles.listItemText,
-                    { color: "green", fontSize: 12 },
+                    { color: "#1DCD92", fontSize: 12 },
                   ]}>
                   +
                   {commaSepertor(
@@ -283,7 +272,7 @@ const Coin = ({ route, navigation }) => {
                 <Text
                   style={[
                     styles.listItemText,
-                    { color: "green", fontSize: 12 },
+                    { color: "#1DCD92", fontSize: 12 },
                   ]}>
                   +
                   {commaSepertor(
@@ -314,7 +303,7 @@ const Coin = ({ route, navigation }) => {
                 <Text
                   style={[
                     styles.listItemText,
-                    { color: "green", fontSize: 12 },
+                    { color: "#1DCD92", fontSize: 12 },
                   ]}>
                   +
                   {commaSepertor(
@@ -481,41 +470,6 @@ const Coin = ({ route, navigation }) => {
               </Text>
             </View>
           </View>
-
-          {/* <View style={styles.blockMargin}>
-            {!singleCoinDetails.description?.en ? (
-              <Text style={{ fontSize: 20 }}>No Result Found</Text>
-            ) : (
-              <View>
-                <Text style={{ fontWeight: "bold", marginVertical: 5 }}>
-                  Text Component
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    paddingVertical: 5,
-                  }}>
-                  {singleCoinDetails.description?.en}
-                </Text>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ fontWeight: "bold", marginVertical: 5 }}>
-                    RenderHTML Component
-                  </Text>
-
-                  <RenderHTML
-                    style={{
-                      fontSize: 16,
-                      paddingVertical: 5,
-                    }}
-                    source={{
-                      html: HTML,
-                    }}
-                    contentWidth={width}
-                  />
-                </View>
-              </View>
-            )}
-          </View> */}
         </ScrollView>
       )}
     </SafeAreaView>

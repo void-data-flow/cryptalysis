@@ -35,7 +35,7 @@ const Item = ({ props, navigation }) => {
             </View>
             <View style={{ flexDirection: "column" }}>
               <Text
-                style={{ textAlign: "left", marginVertical: 1, fontSize: 16 }}>
+                style={{ textAlign: "left", marginVertical: 1, fontSize: 14 }}>
                 {props.name}
               </Text>
 
@@ -75,7 +75,7 @@ const Item = ({ props, navigation }) => {
 
           <View>
             <Text
-              style={{ textAlign: "right", marginVertical: 1, fontSize: 16 }}>
+              style={{ textAlign: "right", marginVertical: 1, fontSize: 14 }}>
               BTC {commaSepertor(Number(props.trade_volume_24h_btc).toFixed(2))}
             </Text>
 
@@ -83,18 +83,6 @@ const Item = ({ props, navigation }) => {
               Year Est.{" "}
               {props.year_established ? props.year_established : "----"}
             </Text>
-
-            {/* <Text style={{ textAlign: "right" }}>
-              {Number(props.price_change_percentage_24h) > 0 ? (
-                <Text style={{ color: "green" }}>
-                  +{Number(props.price_change_percentage_24h).toFixed(2)}%
-                </Text>
-              ) : (
-                <Text style={{ color: "red" }}>
-                  {Number(props.price_change_percentage_24h).toFixed(2)}%
-                </Text>
-              )}
-            </Text> */}
           </View>
         </View>
       </View>
@@ -146,7 +134,8 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     borderRadius: 8,
-    padding: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
     marginVertical: 5,
   },
 });
