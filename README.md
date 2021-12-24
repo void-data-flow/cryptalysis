@@ -5,72 +5,32 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/harshmittal1750/cryptalysis?style=plastic-square)
 ![GitHub forks](https://img.shields.io/github/forks/harshmittal1750/cryptalysis?color=dark-green&style=plastic-square)
 
-<!-- [![Repository Visitors](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fharshmittal1750%2Fcryptalysis&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=true)](https://hits.seeyoufarm.com) -->
+## 👥 Contributors
 
-A cryptocurrency based application on React Native Technology.
+### Sanchit Bajaj
 
-<br>
+### Harsh Mittal
 
-## What is React Native?
+## 💡 Inspiration
 
-React Native is like React, but it uses native components instead of web components as building blocks. So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like JSX, components, state, and props. If you already know React, you still need to learn some React-Native-specific stuff, like the native components. This tutorial is aimed at all audiences, whether you have React experience or not.
+The idea of ​​creating this app is to help a new investor learn the basics of cryptocurrency so that he can track market price, current price, percentage increase or decrease, etc. There are many apps available like Binance, CoinBase, etc., but those are not very friendly.
 
-> Refer: [Click Here](https://reactnative.dev/)
+## 🔨 What it does
 
-<br>
+When the user opens the app for the first time, he can see the total market value of the cryptocurrency, the total amount and tokens of the top five coins and the top 5 most popular Crypto Exchange. There are also 5 tabs at the bottom of the screen that helps continuously use to navigate between simple screens. When a user clicks on any coin, you can see the current price of that coin and the percentage increase or decrease. Below the price section, is a graph showing the price change for 7 days in the form of an image. Below is the official website button for that character and some basic statistics about it. In the Exchange listing section, All listed transactions will appear when they indicate market capture in BTC and when a user clicks on that, their official website will appear on the screen. The following tab is about a currency update that shows which project is coming up or any new coin on the exchange list.
 
-## Requirements
+## 🧩 How we built it
 
-There are 2 ways with which anyone can build the apps in React Native
+We built our project through React-native and Expo CLI. We start designing our layout with the help of an online design tool called Figma. Then we start writing codes after gathering all the information and resources. We use the free CoinGeecko API to provide all the data in our application.
 
-- Expo CLI
-- React-Native CLI
+## 😩 Challenges we ran into
 
-## Contribution Techniques
+The first challenge was to get the data live and it could be exchanged in seconds just like its real value. To overcome this, we used a socket to convert data every second. The next challenge was to get free API data. I hope we have the CoinGeecko API to use our design thinking into a viable project.
 
-<br>
+## 🧠 What we learned
 
-### Fork this repository
+We learned a lot about how to improve the app. We know how regional administrators work, how the API call works in an app, how we can improve the Android and IOS platform app and many other fun things.
 
-Fork this repository by clicking on the fork button on the top of this page. This will create a copy of this repository in your account.
+## 🚀 What's next for Cryptalysis
 
-### Clone the repository
-
-Now clone the forked repository to your system. Go to your GitHub account, open the forked repository, click on the code button copy the suitable URL.
-
-Next open your terminal and paste this command
-
-```
-git clone https://github.com/{your-github-username}/cryptalysis.git
-```
-
-### Create a branch
-
-Create a branch so that there are little to no conflicts while merging into master.
-
-To create a branch write this command
-
-```
-git checkout -b your_new_branch_name
-```
-
-### Add & commit
-
-Make the necessory changes you want and after completing the changes write the commands to commit
-
-```
-git add .
-git commit -m "{your-commit-message}"
-```
-
-### Push your changes to github
-
-After commiting your work into the local repository write this command to bring those changes into github
-
-```
-git push origin your_new_branch_name
-```
-
-After pushing it to the repository make PR(pull request) to add those changes into main branch.
-
-I'm happy to add valid pull request into this repository🥰.
+Our next goal is to add a signup/login function with the bookmark feature. We also plan to add filters and search options so users can easily navigate and search our application.
